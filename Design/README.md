@@ -4,6 +4,11 @@ We use this folder to track the design work and credit the people involved. The 
 
 ## Versions
 
+### v0.2 Opinionated wireframes for the first demand - Desktop
+
+Demand 1 page:
+* Desktop layer
+
 ### v0.1 Opinionated wireframes for the home page
 
 Home page:
