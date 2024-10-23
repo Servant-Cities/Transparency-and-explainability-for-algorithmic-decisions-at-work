@@ -2,6 +2,12 @@
 
 We use this folder to track the design work and credit the people involved. The mockups are made in Figma, we export a .fig file and save it in the repository for further use upon transfering the project.
 
+To update, make sure to pull the remote commits first, then override the current file with the new version of the design.
+
+The cloud version hosted on figma.com is the most reliable source of truth, in case you work on different figma projects, it won't be synchronized.
+You should then make sure to only overide the layer you worked on in order to prevent deletion of the work of others on the archive version.
+You can do that by importing the Figma project in this repository in your own project and resolve conflicts in Figma before pushing your changes.
+
 ## Versions
 
 ### v0.2 Opinionated wireframes for the first demand - Desktop
