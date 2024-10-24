@@ -10,6 +10,11 @@ You can do that by importing the Figma project in this repository in your own pr
 
 ## Versions
 
+### v0.4 Opinionated wireframes for the second demand - Desktop
+
+Demand 2 page:
+* Desktop layer
+
 ### v0.3 Opinionated wireframes for the about page - Desktop
 
 About page:
