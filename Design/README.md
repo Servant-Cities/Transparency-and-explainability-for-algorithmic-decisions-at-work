@@ -10,29 +10,42 @@ You can do that by importing the Figma project in this repository in your own pr
 
 ## Versions
 
+### v0.6 Design landing page
+
+Langing page
+
+- Version with string gradient
+- Version with medium gradient
+- Version with light gradient and images
+
 ### v0.5 Opinionated wireframes for the third demand - Desktop
 
 Demand 3 page:
-* Desktop layer
+
+- Desktop layer
 
 ### v0.4 Opinionated wireframes for the second demand - Desktop
 
 Demand 2 page:
-* Desktop layer
+
+- Desktop layer
 
 ### v0.3 Opinionated wireframes for the about page - Desktop
 
 About page:
-* Desktop layer
+
+- Desktop layer
 
 ### v0.2 Opinionated wireframes for the first demand - Desktop
 
 Demand 1 page:
-* Desktop layer
+
+- Desktop layer
 
 ### v0.1 Opinionated wireframes for the home page
 
 Home page:
-* Desktop layer
-* Tablet layer
-* Smartphone layer
+
+- Desktop layer
+- Tablet layer
+- Smartphone layer
