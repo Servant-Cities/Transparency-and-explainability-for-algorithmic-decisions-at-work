@@ -12,6 +12,14 @@ You can do that by importing the Figma project in this repository in your own pr
 
 ### v0.6 Design landing page
 
+After the meeting agreement on
+
+Langing page
+
+- Version with light gradient and images
+
+### v0.6 Design landing page
+
 Langing page
 
 - Version with string gradient
