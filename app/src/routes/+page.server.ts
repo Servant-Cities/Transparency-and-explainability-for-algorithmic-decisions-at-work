@@ -1,9 +1,9 @@
 import { env } from '$env/dynamic/private';
 import type { PageLoad } from './$types';
-const { DRUPAL_API_BASE_URL, DRUPAL_NODES_LIST_PATH } = env;
+const { DRUPAL_API_BASE_URL, DRUPAL_NODES_PATH } = env;
 
 export const load: PageLoad = async ({}) => {
-	const nodesURL = `${DRUPAL_API_BASE_URL}${DRUPAL_NODES_LIST_PATH}`;
+	const nodesURL = `${DRUPAL_API_BASE_URL}${DRUPAL_NODES_PATH}`;
 
 	const response = await fetch(nodesURL);
 	if (!response.ok) {

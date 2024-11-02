@@ -1,25 +1,28 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
-	let { data, children }: { data: LayoutData; children: Snippet } = $props();
+	let { children }: { children: Snippet } = $props();
 </script>
 
-<nav>
-	<ul>
-		{#each data.nodes as node}
-			<li><a href="/{node.id}" class:active={$page.url.pathname === `/${node.id}`}>{node.title}</a></li>
-		{/each}
-	</ul>
-</nav>
-{@render children()}
+<div>
+	{@render children()}
+	<footer></footer>
+</div>
 
 <style>
-	a {
-		color: blue;
+	div {
+		display: block;
+		height: auto;;
+		padding-bottom: 40px;
 	}
 
-	.active {
-		color: green;
+	footer {
+		display: block;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 40px;
+		border-top: solid 1px black;
 	}
 </style>

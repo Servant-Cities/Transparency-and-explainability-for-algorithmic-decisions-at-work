@@ -2,6 +2,7 @@
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
+	console.log(data.relationships)
 </script>
 
 <svelte:head>
@@ -19,6 +20,7 @@
 
 <style global>
 	.dynamic :global(*) {
+		position: relative;
 		display: block;
 		margin: 0;
 		border: solid black 1px;
