@@ -10,6 +10,17 @@ You can do that by importing the Figma project in this repository in your own pr
 
 ## Versions
 
+### v0.7 Design landing page finish
+
+2 versions:
+
+- Important window unclicked
+- Important window opened
+
+Add footer
+
+Desktop and Ipad version
+
 ### v0.6 Design landing page
 
 After the meeting agreement on
