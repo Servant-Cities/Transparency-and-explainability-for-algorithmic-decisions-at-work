@@ -69,12 +69,6 @@
 		font-family: var(--font-family);
 		font-size: var(--font-size-1);
 		font-weight: 500;
-		color: var(--main-color);
-		text-decoration: none;
-
-		&:hover {
-			text-decoration: underline;
-		}
 	}
 
 	@media only screen and (max-width: 1140px) and (min-width: 640px) {

@@ -5,17 +5,18 @@
 
 	--font-family: Gilroy;
 	--font-size-1: 14px;
-	--font-size-2: 20px;
-	--font-size-3: 24px;
-	--font-size-4: 40px;
+	--font-size-2: 18px;
+	--font-size-3: 20px;
+	--font-size-4: 24px;
+	--font-size-5: 40px;
 
 	--spacing-1: 8px;
 	--spacing-2: 16px;
 	--spacing-3: 24px;
 	--spacing-4: 40px;
 
-	--headers-size-1: 20px;
-	--headers-size-2: 24px;
+	--headers-size-1: var(--font-size-3);
+	--headers-size-2: var(--font-size-4);
 }
 
 /* fonts.css */
@@ -46,7 +47,7 @@
 
 h1 {
 	font-family: var(--font-family);
-	font-size: var(--font-size-4);
+	font-size: var(--font-size-5);
 	font-weight: 900;
 	color: var(--main-color);
 	max-width: 600px;
@@ -61,9 +62,17 @@ h4 {
 	color: var(--main-color);
 	margin-bottom: 8px;
 }
-p {
+p, li {
 	font-family: var(--font-family);
-	font-size: var(--font-size-2);
+	font-size: var(--font-size-3);
 	font-weight: 300;
 	color: var(--main-color);
+}
+a {
+	color: var(--main-color);
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }

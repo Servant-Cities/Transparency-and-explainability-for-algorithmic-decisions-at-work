@@ -5,7 +5,7 @@
 </script>
 
 <section class:open={isOpen}>
-	<button onclick={(e) => (isOpen = !isOpen)}>{@html title}</button>
+	<button aria-label="Displays a detailed explaination" onclick={(e) => (isOpen = !isOpen)}>{@html title}</button>
 	{#if isOpen}
 		{@html content}
 	{/if}
@@ -32,12 +32,13 @@
 	}
 
 	.open {
-		padding: 40px;
+		padding: var(--spacing-4);
 		box-shadow: 0 -2px 3px 4px var(--secondary-color);
 
 		& > :global(button > h4) {
 			display: inline-block;
 			margin-bottom: var(--spacing-4);
+			padding-right: calc(var(--headers-size-2) + var(--spacing-2));
 		}
 
 		&::before {
@@ -47,7 +48,7 @@
 			top: var(--spacing-4);
 			right: var(--spacing-4);
 			color: var(--main-color);
-			font-size: var(--font-size-3);
+			font-size: var(--headers-size-2);
 		}
 	}
 
@@ -57,5 +58,11 @@
 		cursor: pointer;
 		border: none;
 		text-align: left;
+	}
+
+	@media only screen and (max-width: 500px) {
+		.open {
+			padding: var(--spacing-2);
+		}
 	}
 </style>
