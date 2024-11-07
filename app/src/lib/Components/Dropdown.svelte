@@ -13,9 +13,22 @@
 
 <style>
 	section {
-		border-radius: 24px;
-		margin: 40px 0;
+		border-radius: var(--spacing-3);
+		margin: var(--spacing-4) 0;
 		transition: all 0.3s ease-in;
+		& > :global(button > h4::before) {
+			content: 'i';
+			display: inline-block;
+			position: relative;
+			border-radius: 50%;
+			border: 1px solid var(--main-color);
+			width: var(--headers-size-2);
+			height: var(--headers-size-2);
+			text-align: center;
+			font-size: var(--headers-size-1);
+			color: var(--main-color);
+			margin-right: var(--headers-size-2);
+		}
 	}
 
 	.open {
@@ -24,17 +37,17 @@
 
 		& > :global(button > h4) {
 			display: inline-block;
-			margin-bottom: 40px;
+			margin-bottom: var(--spacing-4);
 		}
 
 		&::before {
-			content: 'x';
+			content: '☓';
 			display: inline-block;
 			position: absolute;
-			top: 32px;
-			right: 40px;
+			top: var(--spacing-4);
+			right: var(--spacing-4);
 			color: var(--main-color);
-			font-size: 24px;
+			font-size: var(--font-size-3);
 		}
 	}
 

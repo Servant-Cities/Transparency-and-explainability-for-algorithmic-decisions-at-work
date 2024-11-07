@@ -16,13 +16,13 @@
 		width: 100%;
 		max-width: 1440px;
 		margin: 0 auto;
-		padding: 32px;
-		padding-top: 64px;
+		padding: var(--spacing-3);
+		padding-top: calc(var(--spacing-4) + var(--spacing-3));
 	}
 	div {
 		display: block;
 		height: auto;;
-		padding-bottom: 40px;
+		padding-bottom: var(--spacing-4);
 	}
 
 	footer {
@@ -31,7 +31,7 @@
 		left: 0;
 		bottom: 0;
 		width: 100%;
-		height: 40px;
+		height: var(--spacing-4);
 		border-top: solid 1px black;
 	}
 </style>

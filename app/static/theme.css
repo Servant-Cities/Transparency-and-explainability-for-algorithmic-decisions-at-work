@@ -8,6 +8,14 @@
 	--font-size-2: 20px;
 	--font-size-3: 24px;
 	--font-size-4: 40px;
+
+	--spacing-1: 8px;
+	--spacing-2: 16px;
+	--spacing-3: 24px;
+	--spacing-4: 40px;
+
+	--headers-size-1: 20px;
+	--headers-size-2: 24px;
 }
 
 /* fonts.css */
@@ -48,7 +56,7 @@ h1 {
 h3,
 h4 {
 	font-family: var(--font-family);
-	font-size: var(--font-size-3);
+	font-size: var(--headers-size-2);
 	font-weight: 700;
 	color: var(--main-color);
 	margin-bottom: 8px;

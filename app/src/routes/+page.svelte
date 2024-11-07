@@ -41,15 +41,15 @@
 <style>
 	ul {
 		display: flex;
-		padding: 40px 0;
+		padding: var(--spacing-4) 0;
 		list-style: none;
 		justify-content: space-between;
 	}
 	li {
 		display: inline-block;
 		width: 30%;
-		border-radius: 24px;
-		padding: 40px 40px 18% 40px;
+		border-radius: var(--spacing-3);
+		padding: var(--spacing-4) var(--spacing-4) 18% var(--spacing-4);
 		background: var(--alternative-color);
 		background: linear-gradient(270deg, var(--alternative-color) 20%, var(--secondary-color) 100%);
 	}
@@ -57,12 +57,12 @@
 		position: absolute;
 		left: 0;
 		bottom: 0;
-		padding: 0 40px 40px;
+		padding: 0 var(--spacing-4) var(--spacing-4);
 	}
 	img {
 		width: 65%;
-		border-radius: 20px;
-		margin: 8px 0;
+		border-radius: var(--spacing-2);
+		margin: var(--spacing-1) 0;
 	}
 	a {
 		display: block;
@@ -84,8 +84,8 @@
 		li {
 			display: flex;
 			width: 100%;
-			margin: 24px 0;
-			padding: 40px;
+			margin: var(--spacing-3) 0;
+			padding: var(--spacing-4);
 			> div {
 				display: inline-block;
 				width: 65%;
@@ -97,7 +97,7 @@
 			text-align: right;
 			bottom: unset;
 			left: unset;
-			padding: 40px 0 0 0;
+			padding: var(--spacing-4) 0 0 0;
 		}
 		img {
 			width: 90%;
@@ -111,8 +111,8 @@
 		}
 		li {
 			width: 100%;
-			margin: 24px 0;
-			padding: 40px 40px 54% 40px;
+			margin: var(--spacing-3) 0;
+			padding: var(--spacing-4) var(--spacing-4) 54% var(--spacing-4);
 		}
 	}
 </style>
