@@ -1,15 +1,25 @@
 <script lang="ts">
+	import Dropdown from '$lib/Components/Dropdown.svelte';
 	import type { PageData } from './$types';
 	let { data }: { data: PageData } = $props();
 </script>
-
-<div class="wrapper">
 	<h1>Transparency and explainability for algorithmic decisions at work</h1>
 	<p>
 		Any employer or platform that uses AI or other algorithmic tools to manage their workers must be
 		clear and open about how those tools work. Workers need to be able to understand decisions that
 		affect them, especially when it’s about important things like their working hours and pay.
 	</p>
+	<Dropdown html={`<h4>Why is it important?</h4>
+		<p>
+			Otherwise, companies can unfairly leverage control over workers by withholding important
+			information from them. 
+			That’s why workers must be given the right level and amount of information at the right time, including clear reasons for why decisions are made. 
+			This information should enable workers to understand which parameters are the most important in an automated decision-making process and what changes they can make to get the outcomes they prefer. 
+			They must also know how they can ask a human to review algorithmic decisions.
+			Ultimately, this is about respect for workers who are subject to algorithmic management. 
+			To provide the foundation for that respect, we’re calling on all employers and platforms to do
+			the following when using AI and algorithms in the workplace.
+		</p>`}/>
 
 	<nav>
 		<ul>
@@ -27,30 +37,8 @@
 			{/each}
 		</ul>
 	</nav>
-</div>
 
 <style>
-	.wrapper {
-		display: block;
-		width: 100%;
-		max-width: 1440px;
-		margin: 0 auto;
-		padding: 32px;
-		padding-top: 64px;
-	}
-	h1 {
-		font-family: var(--font-family);
-		font-size: var(--font-size-4);
-		font-weight: 900;
-		color: var(--main-color);
-		margin-bottom: 24px;
-	}
-	p {
-		font-family: var(--font-family);
-		font-size: var(--font-size-2);
-		font-weight: 300;
-		color: var(--main-color);
-	}
 	ul {
 		display: flex;
 		padding: 40px 0;
@@ -64,13 +52,6 @@
 		padding: 40px 40px 18% 40px;
 		background: var(--alternative-color);
 		background: linear-gradient(270deg, var(--alternative-color) 20%, var(--secondary-color) 100%);
-	}
-	h3 {
-		font-family: var(--font-family);
-		font-size: var(--font-size-3);
-		font-weight: 700;
-		color: var(--main-color);
-		margin-bottom: 8px;
 	}
 	.li_footer {
 		position: absolute;
@@ -115,7 +96,7 @@
 			width: 30%;
 			text-align: right;
 			bottom: unset;
-			left:unset;
+			left: unset;
 			padding: 40px 0 0 0;
 		}
 		img {

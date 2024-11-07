@@ -1,12 +1,11 @@
 <script lang="ts">
+	import Dropdown from '$lib/Components/Dropdown.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
-	console.log(data.relationships)
 </script>
 
 <svelte:head>
-	<title>{data.title}</title>
 	{#each data.metatag as { tag, attributes }}
 		{@html `<${tag} ${Object.entries(attributes)
 			.map(([key, value]) => `${key}="${value}"`)
@@ -14,17 +13,12 @@
 	{/each}
 </svelte:head>
 <h1>{data.title}</h1>
-<div class="dynamic">
+<div>
 	{@html data.body.processed}
+	{#each data.subDemands as { attributes: { field_fieldset_text } }}
+		<Dropdown html={field_fieldset_text.processed} />
+	{/each}
+	{#each data.examples as { attributes: { field_fieldset_text } }}
+		{@html field_fieldset_text.processed}
+	{/each}
 </div>
-
-<style global>
-	.dynamic :global(*) {
-		position: relative;
-		display: block;
-		margin: 0;
-		border: solid black 1px;
-		padding: 16px;
-		margin: 16px;
-	}
-</style>
