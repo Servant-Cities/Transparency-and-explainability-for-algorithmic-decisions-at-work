@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Dropdown from '$lib/Components/Dropdown.svelte';
+	import Example from '$lib/Components/Example.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -21,7 +22,7 @@
 	{/each}
 	<h3>Examples</h3>
 	{#each data.examples as { attributes: { field_fieldset_text } }}
-		{@html field_fieldset_text.processed}
+		<Example html={field_fieldset_text.processed} />
 	{/each}
 </div>
 
