@@ -7,7 +7,9 @@
 <div>
 	<div class="wrapper">
 	{@render children()}</div>
-	<footer></footer>
+	<footer>
+		<a href="/about">About the campaign</a>
+	</footer>
 </div>
 
 <style>
@@ -32,6 +34,8 @@
 		bottom: 0;
 		width: 100%;
 		height: var(--spacing-4);
+		padding: var(--spacing-1);
 		border-top: solid 1px black;
+		text-align: right;
 	}
 </style>

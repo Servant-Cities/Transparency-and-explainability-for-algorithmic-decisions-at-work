@@ -1,0 +1,42 @@
+<script lang="ts">
+	import Dropdown from '$lib/Components/Dropdown.svelte';
+	import Example from '$lib/Components/Example.svelte';
+	import type { PageData } from './$types';
+
+	let { data }: { data: PageData } = $props();
+</script>
+
+<main>
+	<a class="homepage_link" href="/">Transparency and explainability for algorithmic decisions at work ></a>
+	<h1>{data.title}</h1>
+	{@html data.content}
+	{#each data.partners as partner}
+		<div class="partner">
+			<div>{@html partner.description}</div>
+			<a href={partner.url} aria-label="Partner's logo leading to their website"><img src={partner.logoURL} /></a>
+		</div>
+	{/each}
+</main>
+
+
+<style>
+	.partner {
+		margin-top: var(--spacing-4);
+		max-width: 900px;
+
+		& > div {
+			display: inline-block;
+			vertical-align: middle;
+			width: calc(100% - var(--spacing-2) - 190px);
+			margin-right: var(--spacing-2);
+		}
+
+		& > a {
+			display: inline-block;
+			vertical-align: middle;
+			width: 180px;
+			max-width: 100%;
+			margin-top: var(--spacing-3);
+		}
+	}
+</style>

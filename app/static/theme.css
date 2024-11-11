@@ -45,6 +45,18 @@
 	src: url('/fonts/Radomir Tinkov - Gilroy-Black.otf') format('opentype');
 }
 
+main {
+	width: 100%;
+	max-width: 1440px;
+	margin: 0 auto;
+	padding: 0 var(--spacing-4) var(--spacing-4);
+}
+
+.homepage_link {
+	display: block;
+	margin-bottom: var(--spacing-4);
+}
+
 h1 {
 	font-family: var(--font-family);
 	font-size: var(--font-size-5);
@@ -58,7 +70,7 @@ h2 {
 	font-family: var(--font-family);
 	font-size: var(--font-size-4);
 	font-weight: 700;
-	margin-top: var(--spacing-4);
+	margin: var(--spacing-4) 0;
 	color: var(--main-color);
 }
 
@@ -75,6 +87,11 @@ p, li {
 	font-size: var(--font-size-3);
 	font-weight: 300;
 	color: var(--main-color);
+	padding-bottom: var(--spacing-2);
+
+	& > a {
+		text-decoration: underline;
+	}
 }
 a {
 	color: var(--main-color);
