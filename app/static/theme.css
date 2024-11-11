@@ -101,3 +101,9 @@ a {
 		text-decoration: underline;
 	}
 }
+button {
+	background-color: transparent;
+	cursor: pointer;
+	border: none;
+	text-align: left;
+}

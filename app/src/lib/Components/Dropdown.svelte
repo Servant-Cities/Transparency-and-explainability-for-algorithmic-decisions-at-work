@@ -21,10 +21,16 @@
 			display: none;
 		}
 
-		& > :global(button > h4::before) {
+		& > button {
+			width: 100%;
+			padding-left: calc(var(--headers-size-2) + var(--spacing-2));
+
+			&::before {
 			content: 'i';
 			display: inline-block;
-			position: relative;
+			position: absolute;
+			left: 0;
+			top: calc(var(--headers-size-2) - var(--headers-size-1));
 			border-radius: 50%;
 			border: 1px solid var(--main-color);
 			width: var(--headers-size-2);
@@ -33,6 +39,7 @@
 			font-size: var(--headers-size-1);
 			color: var(--main-color);
 			margin-right: var(--headers-size-2);
+		}
 		}
 	}
 
@@ -59,14 +66,6 @@
 			color: var(--main-color);
 			font-size: var(--headers-size-2);
 		}
-	}
-
-	button {
-		width: 100%;
-		background-color: transparent;
-		cursor: pointer;
-		border: none;
-		text-align: left;
 	}
 
 	@media only screen and (max-width: 500px) {

@@ -5,7 +5,7 @@
 
 <section>
 	{#if title}
-	{@html title}
+		{@html title}
 		<div>
 			<div class="content">{@html content}</div>
 			<img alt="A placeholder" src="/placeholder.gif" />
