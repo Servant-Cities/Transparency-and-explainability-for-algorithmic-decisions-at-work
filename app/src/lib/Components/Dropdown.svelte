@@ -6,9 +6,9 @@
 
 <section class:open={isOpen}>
 	<button aria-label="Displays a detailed explaination" onclick={(e) => (isOpen = !isOpen)}>{@html title}</button>
-	{#if isOpen}
+	<div>
 		{@html content}
-	{/if}
+	</div>
 </section>
 
 <style>
@@ -16,6 +16,11 @@
 		border-radius: var(--spacing-3);
 		margin: var(--spacing-4) 0;
 		transition: all 0.3s ease-in;
+
+		& > div {
+			display: none;
+		}
+
 		& > :global(button > h4::before) {
 			content: 'i';
 			display: inline-block;
@@ -34,6 +39,10 @@
 	.open {
 		padding: var(--spacing-4);
 		box-shadow: 0 -2px 3px 4px var(--secondary-color);
+
+		& > div {
+			display: block;
+		}
 
 		& > :global(button > h4) {
 			display: inline-block;

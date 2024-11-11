@@ -13,25 +13,23 @@
 			.join(' ')}/>`}
 	{/each}
 </svelte:head>
-<a href="/">Transparency and explainability for algorithmic decisions at work ></a>
-<h1>{data.title}</h1>
-<div>
-	{@html data.body.processed}
-	{#each data.subDemands as { attributes: { field_fieldset_text } }}
-		<Dropdown html={field_fieldset_text.processed} />
-	{/each}
-	<h2>Examples</h2>
-	{#each data.examples as { attributes: { field_fieldset_text } }}
-		<Example html={field_fieldset_text.processed} />
-	{/each}
-</div>
+<main>
+	<a class="homepage_link" href="/">Transparency and explainability for algorithmic decisions at work ></a>
+	<h1>{data.title}</h1>
+	<div>
+		{@html data.body.processed}
+		{#each data.subDemands as { attributes: { field_fieldset_text } }}
+			<Dropdown html={field_fieldset_text.processed} />
+		{/each}
+		<h2>Examples</h2>
+		{#each data.examples as { attributes: { field_fieldset_text } }}
+			<Example html={field_fieldset_text.processed} />
+		{/each}
+	</div>
+</main>
 
 <style>
 	h1 {
 		max-width: 800px;
-	}
-	a {
-		display: block;
-		margin-bottom: var(--spacing-4);
 	}
 </style>

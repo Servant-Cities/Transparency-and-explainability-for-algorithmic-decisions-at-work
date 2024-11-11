@@ -3,6 +3,7 @@
 	import type { PageData } from './$types';
 	let { data }: { data: PageData } = $props();
 </script>
+<main>
 	<h1>Transparency and explainability for algorithmic decisions at work</h1>
 	<p>
 		Any employer or platform that uses AI or other algorithmic tools to manage their workers must be
@@ -37,6 +38,7 @@
 			{/each}
 		</ul>
 	</nav>
+</main>
 
 <style>
 	ul {
