@@ -41,7 +41,7 @@
 <style>
 	ul {
 		display: flex;
-		padding: var(--spacing-4) 0;
+		padding: 0;
 		list-style: none;
 		justify-content: space-between;
 	}

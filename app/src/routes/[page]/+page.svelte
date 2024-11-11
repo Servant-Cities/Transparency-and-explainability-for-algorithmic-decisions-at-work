@@ -20,13 +20,16 @@
 	{#each data.subDemands as { attributes: { field_fieldset_text } }}
 		<Dropdown html={field_fieldset_text.processed} />
 	{/each}
-	<h3>Examples</h3>
+	<h2>Examples</h2>
 	{#each data.examples as { attributes: { field_fieldset_text } }}
 		<Example html={field_fieldset_text.processed} />
 	{/each}
 </div>
 
 <style>
+	h1 {
+		max-width: 800px;
+	}
 	a {
 		display: block;
 		margin-bottom: var(--spacing-4);

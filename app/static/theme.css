@@ -54,6 +54,14 @@ h1 {
 	margin-bottom: 24px;
 }
 
+h2 {
+	font-family: var(--font-family);
+	font-size: var(--font-size-4);
+	font-weight: 700;
+	margin-top: var(--spacing-4);
+	color: var(--main-color);
+}
+
 h3,
 h4 {
 	font-family: var(--font-family);
