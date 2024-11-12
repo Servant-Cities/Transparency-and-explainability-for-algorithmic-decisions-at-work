@@ -1,14 +1,14 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { LayoutData } from './$types';
-	let { children }: { children: Snippet } = $props();
+	let { children, data }: { children: Snippet, data: LayoutData } = $props();
 </script>
 
 <div>
 	<div class="wrapper">
 	{@render children()}</div>
 	<footer>
-		<a href="/about">About the campaign</a>
+		<a href="/about">{`${data.about.title} >`}</a>
 	</footer>
 </div>
 
