@@ -62,7 +62,7 @@ h1 {
 	font-size: var(--font-size-5);
 	font-weight: 900;
 	color: var(--main-color);
-	max-width: 600px;
+	max-width: 800px;
 	margin-bottom: 24px;
 }
 
@@ -82,7 +82,17 @@ h4 {
 	color: var(--main-color);
 	margin-bottom: 8px;
 }
-p, li {
+
+h5 {
+	font-family: var(--font-family);
+	font-size: var(--font-size-3);
+	font-weight: 700;
+	color: var(--main-color);
+	display: block;
+}
+
+p,
+li {
 	font-family: var(--font-family);
 	font-size: var(--font-size-3);
 	font-weight: 300;
@@ -93,6 +103,15 @@ p, li {
 		text-decoration: underline;
 	}
 }
+
+strong {
+	font-family: var(--font-family);
+	font-size: var(--font-size-3);
+	font-weight: 700;
+	color: var(--main-color);
+	display: inline;
+}
+
 a {
 	color: var(--main-color);
 	text-decoration: none;
@@ -101,6 +120,7 @@ a {
 		text-decoration: underline;
 	}
 }
+
 button {
 	background-color: transparent;
 	cursor: pointer;

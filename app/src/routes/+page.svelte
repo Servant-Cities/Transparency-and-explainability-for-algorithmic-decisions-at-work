@@ -1,38 +1,21 @@
 <script lang="ts">
-	import Dropdown from '$lib/Components/Dropdown.svelte';
-	import type { PageData } from './$types';
-	let { data }: { data: PageData } = $props();
+	import type { LayoutData } from './$types';
+	let { data }: { data: LayoutData } = $props();
 </script>
 <main>
-	<h1>Transparency and explainability for algorithmic decisions at work</h1>
-	<p>
-		Any employer or platform that uses AI or other algorithmic tools to manage their workers must be
-		clear and open about how those tools work. Workers need to be able to understand decisions that
-		affect them, especially when it’s about important things like their working hours and pay.
-	</p>
-	<Dropdown html={`<h4>Why is it important?</h4>
-		<p>
-			Otherwise, companies can unfairly leverage control over workers by withholding important
-			information from them. 
-			That’s why workers must be given the right level and amount of information at the right time, including clear reasons for why decisions are made. 
-			This information should enable workers to understand which parameters are the most important in an automated decision-making process and what changes they can make to get the outcomes they prefer. 
-			They must also know how they can ask a human to review algorithmic decisions.
-			Ultimately, this is about respect for workers who are subject to algorithmic management. 
-			To provide the foundation for that respect, we’re calling on all employers and platforms to do
-			the following when using AI and algorithms in the workplace.
-		</p>`}/>
-
+	<h1>{data.homepage.title}</h1>
+	{@html data.homepage.body.processed}
 	<nav>
 		<ul>
-			{#each data.nodes as node, index}
+			{#each data.demands as demand, index}
 				<li>
 					<div>
 						<h3>Demand {index + 1}</h3>
-						<p>{node.title}</p>
+						<p>{demand.title}</p>
 					</div>
 					<div class="li_footer">
 						<img alt="A placeholder" src="/placeholder.gif" />
-						<a href="/{node.id}">check it out ↗</a>
+						<a href="/{demand.id}">check it out ↗</a>
 					</div>
 				</li>
 			{/each}

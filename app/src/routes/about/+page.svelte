@@ -1,23 +1,25 @@
 <script lang="ts">
-	import Dropdown from '$lib/Components/Dropdown.svelte';
-	import Example from '$lib/Components/Example.svelte';
 	import type { PageData } from './$types';
+	import type { LayoutData } from '../$types';
 
-	let { data }: { data: PageData } = $props();
+	let { data }: { data: PageData & LayoutData } = $props();
 </script>
 
 <main>
-	<a class="homepage_link" href="/">Transparency and explainability for algorithmic decisions at work ></a>
-	<h1>{data.title}</h1>
-	{@html data.content}
+	<a class="homepage_link" href="/"
+		>{`${data.homepage.title} >`}</a
+	>
+	<h1>{data.about.title}</h1>
+	{@html data.about.body.processed}
 	{#each data.partners as partner}
 		<div class="partner">
-			<a href={partner.url} aria-label="Partner's logo leading to their website"><img src={partner.logoURL} /></a>
+			<a href={partner.url} aria-label="Partner's logo leading to their website"
+				><img src={partner.logoURL} /></a
+			>
 			<div>{@html partner.description}</div>
 		</div>
 	{/each}
 </main>
-
 
 <style>
 	.partner {
@@ -44,7 +46,7 @@
 	@media only screen and (max-width: 740px) {
 		.partner {
 			display: flex;
-            flex-direction: column;
+			flex-direction: column;
 			align-items: unset;
 
 			& > div {
@@ -53,8 +55,8 @@
 			}
 
 			& > a {
-			margin-bottom: var(--spacing-3);
-		}
+				margin-bottom: var(--spacing-3);
+			}
 		}
 	}
 </style>
