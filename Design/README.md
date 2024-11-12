@@ -10,6 +10,10 @@ You can do that by importing the Figma project in this repository in your own pr
 
 ## Versions
 
+### v04 Design spacing and text correction
+
+- After the meeting: efficiency in page space and test correction
+
 ### v03 Design 3 demand pages
 
 - General design finished for all three demands
