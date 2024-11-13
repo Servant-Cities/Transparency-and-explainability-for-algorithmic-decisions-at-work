@@ -3,7 +3,9 @@
 </script>
 
 <section class="content">
-	{@html html}
+	<div>
+		{@html html}
+	</div>
 	{#if imageURL}
 		<img alt={imageAlt} src={imageURL} />
 	{/if}
@@ -11,30 +13,30 @@
 
 <style>
 	section {
+		display: flex;
+		width: 100%;
 		vertical-align: top;
 		margin-top: var(--spacing-4);
 	}
 
 	.content {
-
-		& :global(div > div:first-child) {
+		& > :global(div > div:first-child) {
 			display: inline-block;
 			width: calc(100% - var(--spacing-2) - 330px);
 			margin-right: var(--spacing-2);
 		}
 
-		& > img,
-		:global(div:nth-child(2)) {
+		& > img {
 			display: inline-block;
 			width: 320px;
 			max-width: 100%;
 			margin-top: var(--spacing-3);
+			object-fit: cover;
 		}
 	}
 
 	@media only screen and (max-width: 900px) {
 		section {
-			display: flex;
 			flex-direction: column;
 		}
 
