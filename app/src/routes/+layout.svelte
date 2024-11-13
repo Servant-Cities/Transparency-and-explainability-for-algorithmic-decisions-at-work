@@ -13,7 +13,7 @@
 	</div>
 	<footer>
 		<a href={PUBLIC_CAMPAIGN_ORGANIZER_URL} target="_blank"><img alt="Privacy international's logo" src="/logo.png"></a>
-		<a href={`/${formatTitleURL(aboutPage.title)}/${aboutPage.id}`}>{`${aboutPage.title} >`}</a>
+		<a href={`/${formatTitleURL(aboutPage.title)}/${aboutPage.id}`} >{`${aboutPage.title} >`}</a>
 	</footer>
 </div>
 

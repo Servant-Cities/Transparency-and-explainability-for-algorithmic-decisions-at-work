@@ -1,14 +1,23 @@
+import { env } from '$env/dynamic/private';
 import type { PageServerLoad } from '../$types';
 
 import getExamples from '$lib/queries/getExamples';
 import getPartners from '$lib/queries/getPartners';
 import getSubdemands from '$lib/queries/getSubdemands';
 
-export const load: PageServerLoad = async ({ params }) => {
+const {
+	CACHE_CONTROL_TIME,
+} = env;
+
+export const load: PageServerLoad = async ({ params, setHeaders }) => {
+	setHeaders({
+		'cache-control': `max-age=${CACHE_CONTROL_TIME || '900'}`,
+	});
+
 	return {
 		nodeId: params.nodeId,
 		subDemands: getSubdemands(params.nodeId),
 		examples: getExamples(params.nodeId),
-		partners: await getPartners(params.nodeId),
+		partners: getPartners(params.nodeId),
 	};
 };

@@ -9,7 +9,7 @@ const {
 	DEMAND_TYPE_ID,
 	ABOUT_PAGE_TYPE_ID,
 	DRUPAL_NODES_PATH,
-	DRUPAL_EXAMPLES_TITLE_FIELD
+	DRUPAL_EXAMPLES_TITLE_FIELD,
 } = env;
 
 const pageTypes = {
@@ -67,11 +67,12 @@ export const load: PageLoad = async ({}) => {
 	}
 	const { data: socials } = await socialsResponse.json();
 */
+
 	return {
 		indexesMap,
 		homepageIndex,
 		aboutPageIndex,
-		processedNodes,
+		processedNodes
 		//socials,
 	};
 };
