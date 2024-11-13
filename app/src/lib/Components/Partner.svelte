@@ -1,28 +1,13 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	import type { LayoutData } from '../$types';
-	import Partner from '$lib/Components/Partner.svelte';
-
-	let { data }: { data: PageData & LayoutData } = $props();
+	let { partner }: { partner: {url: string; description: string; logoURL: string} } = $props();
 </script>
 
-<svelte:head>
-	{#each data.about.metatag as { tag, attributes }}
-		{@html `<${tag} ${Object.entries(attributes)
-			.map(([key, value]) => `${key}="${value}"`)
-			.join(' ')}/>`}
-	{/each}
-</svelte:head>
-<main>
-	<a class="homepage_link" href="/"
-		>{`${data.homepage.title} >`}</a
-	>
-	<h1>{data.about.title}</h1>
-	{@html data.about.body.processed}
-	{#each data.partners as partner}
-		<Partner partner={partner} />
-	{/each}
-</main>
+<div class="partner">
+    <a href={partner.url} aria-label="Partner's logo leading to their website"
+        ><img src={partner.logoURL} /></a
+    >
+    <div>{@html partner.description}</div>
+</div>
 
 <style>
 	.partner {
