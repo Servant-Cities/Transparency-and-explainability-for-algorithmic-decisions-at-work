@@ -1,4 +1,6 @@
 <script lang="ts">
+	import formatTitleURL from "$lib/utils/formatTitleURL";
+
 	let { demand, number }: { demand: {title: string; id: string}, number: number } = $props();
 
 </script>
@@ -10,7 +12,7 @@
 	</div>
 	<div class="li_footer">
 		<img alt="A placeholder" src="/placeholder.gif" />
-		<a href="/{demand.id}">check it out ↗</a>
+		<a href="/{formatTitleURL(demand.title)}/{demand.id}">check it out ↗</a>
 	</div>
 </li>
 

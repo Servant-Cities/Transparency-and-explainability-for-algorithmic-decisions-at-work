@@ -2,7 +2,9 @@
 	import type { Snippet } from 'svelte';
 	import type { LayoutData } from './$types';
 	import {PUBLIC_CAMPAIGN_ORGANIZER_URL} from '$env/static/public';
+	import formatTitleURL from '$lib/utils/formatTitleURL';
 	let { children, data }: { children: Snippet, data: LayoutData } = $props();
+	const aboutPage = data.processedNodes[data.aboutPageIndex]
 </script>
 
 <div>
@@ -11,7 +13,7 @@
 	</div>
 	<footer>
 		<a href={PUBLIC_CAMPAIGN_ORGANIZER_URL} target="_blank"><img alt="Privacy international's logo" src="/logo.png"></a>
-		<a href="/about">{`${data.about.title} >`}</a>
+		<a href={`/${formatTitleURL(aboutPage.title)}/${aboutPage.id}`}>{`${aboutPage.title} >`}</a>
 	</footer>
 </div>
 

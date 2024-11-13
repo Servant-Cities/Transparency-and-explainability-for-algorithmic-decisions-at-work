@@ -2,22 +2,23 @@
 	import DemandCard from '$lib/Components/DemandCard.svelte';
  	import type { LayoutData } from './$types';
 	let { data }: { data: LayoutData } = $props();
-	console.log(data.data)
+	const homepage = data.processedNodes[data.homepageIndex];
+	const demands = data.processedNodes.filter((_, index) => index !== data.homepageIndex && index !== data.aboutPageIndex)
 </script>
 
 <svelte:head>
-	{#each data.homepage.metatag as { tag, attributes }}
+	{#each homepage.metatag as { tag, attributes }}
 		{@html `<${tag} ${Object.entries(attributes)
 			.map(([key, value]) => `${key}="${value}"`)
 			.join(' ')}/>`}
 	{/each}
 </svelte:head>
 <main>
-	<h1>{data.homepage.title}</h1>
-	{@html data.homepage.body.processed}
+	<h1>{homepage.title}</h1>
+	{@html homepage.body.processed}
 	<nav>
 		<ul>
-			{#each data.demands as demand, index}
+			{#each demands as demand, index}
 				<DemandCard demand={demand} number={index + 1}/>
 			{/each}
 		</ul>

@@ -1,5 +1,5 @@
 import { env } from '$env/dynamic/private';
-import type { PageLoad } from './$types';
+import type { PageLoad } from '../$types';
 const {
 	DRUPAL_BASE_URL,
 	DRUPAL_JSON_API_PATH,
@@ -10,7 +10,7 @@ const {
 } = env;
 
 export const load: PageLoad = async ({ params }) => {
-	const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}${DRUPAL_NODES_PATH}/${params.page}`;
+	const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}${DRUPAL_NODES_PATH}/${params.nodeId}`;
 
 	//Load sub demands
 	const subDemandsResponse = await fetch(`${nodeURL}/${DRUPAL_SUBDEMANDS_FIELD}`);
@@ -21,7 +21,7 @@ export const load: PageLoad = async ({ params }) => {
 	const { data: subDemands } = await subDemandsResponse.json();
 
 	const processedSubDemands = subDemands.map(({ attributes }) => ({
-		html: attributes.field_fieldset_text.processed
+		html: attributes?.field_fieldset_text?.processed
 	}));
 
 	//Load examples
@@ -36,7 +36,7 @@ export const load: PageLoad = async ({ params }) => {
 	const processedExamples = await Promise.all(
 		examples.map(async (example) => {
 			const imageRelation = example.relationships[DRUPAL_EXAMPLE_IMAGE_FIELD];
-			if (imageRelation.data?.id) {
+			if (imageRelation?.data?.id) {
 				const imageResponse = await fetch(imageRelation.links.related.href);
 				if (!imageResponse.ok) {
 					throw new Error(`Example image response status: ${imageResponse.status}`);
@@ -51,13 +51,13 @@ export const load: PageLoad = async ({ params }) => {
 				};
 			}
 			return {
-				html: example.attributes.field_fieldset_text.processed
+				html: example.attributes?.field_fieldset_text?.processed
 			};
 		})
 	);
 
 	const processedNode = {
-		nodeId: params.page,
+		nodeId: params.nodeId,
 		subDemands: processedSubDemands,
 		examples: processedExamples
 	};

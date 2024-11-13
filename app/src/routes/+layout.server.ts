@@ -28,12 +28,11 @@ export const load: PageLoad = async ({}) => {
 	}
 	const { data } = await response.json();
 
-	// Segregate nodes per page type
-	let homepage; // Max one, the last in the list overides any other
-	let demands = [];
-	let about; // Max one, the last in the list overides any other
-
-	data.forEach(({ id, attributes, relationships }) => {
+	// Match titles with nodes indexes to give pages a comprehensive URL
+	const indexesMap = {};
+	let homepageIndex;
+	let aboutPageIndex;
+	const processedNodes = data.map(({ id, attributes, relationships }, index) => {
 		const processedNode = {
 			id,
 			pageType:
@@ -43,21 +42,20 @@ export const load: PageLoad = async ({}) => {
 			metatag: attributes.metatag,
 			examplesTitle: attributes[DRUPAL_EXAMPLES_TITLE_FIELD]
 		};
+		indexesMap[id] = index;
 		switch (processedNode.pageType) {
 			case 'Homepage':
-				homepage = processedNode;
-				break;
-			case 'Demand':
-				demands.push(processedNode);
-				break;
+				homepageIndex = index;
 			case 'About':
-				about = processedNode;
+				aboutPageIndex = index;
+			case 'Demand':
 				break;
 			default:
 				console.warn(
-					`Page type ${relationships[DRUPAL_PAGE_TYPE_FIELD].data.meta.drupal_internal__target_id} is not supported.`
+					`Page type ${relationships[DRUPAL_PAGE_TYPE_FIELD].data.meta.drupal_internal__target_id} is not supported, it will be considered as a Demand by default`
 				);
 		}
+		return processedNode;
 	});
 
 	/*
@@ -70,9 +68,10 @@ export const load: PageLoad = async ({}) => {
 	const { data: socials } = await socialsResponse.json();
 */
 	return {
-		homepage,
-		demands,
-		about,
+		indexesMap,
+		homepageIndex,
+		aboutPageIndex,
+		processedNodes
 		//socials,
 		//data
 	};
