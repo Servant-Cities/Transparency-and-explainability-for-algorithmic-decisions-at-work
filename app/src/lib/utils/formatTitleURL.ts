@@ -1,3 +1,3 @@
-const formatTitleURL = (title: string) => title.replace(/ /g, '-');
+const formatTitleURL = (title: string) => title.replace(/\/| |\?|,/g, '-');
 
 export default formatTitleURL;

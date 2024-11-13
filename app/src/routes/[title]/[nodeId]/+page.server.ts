@@ -6,7 +6,8 @@ const {
 	DRUPAL_NODES_PATH,
 	DRUPAL_EXAMPLES_FIELD,
 	DRUPAL_SUBDEMANDS_FIELD,
-	DRUPAL_EXAMPLE_IMAGE_FIELD
+	DRUPAL_EXAMPLE_IMAGE_FIELD,
+	DRUPAL_PARTNERS_FIELD,
 } = env;
 
 export const load: PageLoad = async ({ params }) => {
@@ -56,10 +57,44 @@ export const load: PageLoad = async ({ params }) => {
 		})
 	);
 
+	//Load partners
+	const partnersResponse = await fetch(`${nodeURL}/${DRUPAL_PARTNERS_FIELD}`);
+	if (!partnersResponse.ok) {
+		throw new Error(`Partners response status: ${partnersResponse.status}`);
+	}
+
+	const { data: partners } = await partnersResponse.json();
+
+	//Load examples images information
+	const processedPartners = await Promise.all(
+		partners.map(async (partner) => {
+			const imageRelation = partner.relationships[DRUPAL_EXAMPLE_IMAGE_FIELD];
+			if (imageRelation?.data?.id) {
+				const imageResponse = await fetch(imageRelation.links.related.href);
+				if (!imageResponse.ok) {
+					throw new Error(`Partner image response status: ${imageResponse.status}`);
+				}
+
+				const { data: image } = await imageResponse.json();
+
+				return {
+					html: partner.attributes.field_fieldset_text.processed,
+					imageURL: `${DRUPAL_BASE_URL}${image.attributes.uri.url}`,
+					imageAlt: imageRelation.data.meta.alt
+				};
+			}
+			return {
+				html: partner.attributes?.field_fieldset_text?.processed
+			};
+		})
+	);
+
+
 	const processedNode = {
 		nodeId: params.nodeId,
 		subDemands: processedSubDemands,
-		examples: processedExamples
+		examples: processedExamples,
+		partners: processedPartners,
 	};
 
 	return processedNode;

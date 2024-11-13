@@ -71,8 +71,7 @@ export const load: PageLoad = async ({}) => {
 		indexesMap,
 		homepageIndex,
 		aboutPageIndex,
-		processedNodes
+		processedNodes,
 		//socials,
-		//data
 	};
 };

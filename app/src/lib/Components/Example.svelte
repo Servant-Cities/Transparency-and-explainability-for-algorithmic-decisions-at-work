@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { html, imageURL, imageAlt }: { html: string } = $props();
+	let { html, imageURL, imageAlt }: { html: string;  imageURL: string; imageAlt: string } = $props();
 </script>
 
 <section class="content">
