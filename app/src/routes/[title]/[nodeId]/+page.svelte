@@ -23,21 +23,27 @@
 	<h1>{page.title}</h1>
 	<div>
 		{@html page.body.processed}
-		{#if data.subDemands?.length > 0}
-			{#each data.subDemands as { html }}
-				<Dropdown {html} />
-			{/each}
-		{/if}
-		{#if data.examples?.length > 0 && page.examplesTitle}
-			<h2>{page.examplesTitle}</h2>
-			{#each data.examples as { html, imageURL, imageAlt }}
-				<Example {...{ html, imageURL, imageAlt }} />
-			{/each}
-		{/if}
-		{#if page.pageType === 'About' && data.partners?.length > 0}
-			{#each data.partners as { html, imageURL, imageAlt }}
-				<Partner {...{ html, imageURL, imageAlt }} />
-			{/each}
-		{/if}
+		{#await data.subDemands then subDemands}
+			{#if subDemands?.length > 0}
+				{#each subDemands as { html }}
+					<Dropdown {html} />
+				{/each}
+			{/if}
+		{/await}
+		{#await data.examples then examples}
+			{#if examples?.length > 0 && page.examplesTitle}
+				<h2>{page.examplesTitle}</h2>
+				{#each examples as { html, imageURL, imageAlt }}
+					<Example {...{ html, imageURL, imageAlt }} />
+				{/each}
+			{/if}
+		{/await}
+		{#await data.partners then partners}
+			{#if page.pageType === 'About' && partners?.length > 0}
+				{#each partners as { html, imageURL, imageAlt }}
+					<Partner {...{ html, imageURL, imageAlt }} />
+				{/each}
+			{/if}
+		{/await}
 	</div>
 </main>

@@ -1,101 +1,14 @@
-import { env } from '$env/dynamic/private';
-import type { PageLoad } from '../$types';
-const {
-	DRUPAL_BASE_URL,
-	DRUPAL_JSON_API_PATH,
-	DRUPAL_NODES_PATH,
-	DRUPAL_EXAMPLES_FIELD,
-	DRUPAL_SUBDEMANDS_FIELD,
-	DRUPAL_EXAMPLE_IMAGE_FIELD,
-	DRUPAL_PARTNERS_FIELD,
-} = env;
+import type { PageServerLoad } from '../$types';
 
-export const load: PageLoad = async ({ params }) => {
-	const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}${DRUPAL_NODES_PATH}/${params.nodeId}`;
+import getExamples from '$lib/queries/getExamples';
+import getPartners from '$lib/queries/getPartners';
+import getSubdemands from '$lib/queries/getSubdemands';
 
-	//Load sub demands
-	const subDemandsResponse = await fetch(`${nodeURL}/${DRUPAL_SUBDEMANDS_FIELD}`);
-	if (!subDemandsResponse.ok) {
-		throw new Error(`Subdemands response status: ${subDemandsResponse.status}`);
-	}
-
-	const { data: subDemands } = await subDemandsResponse.json();
-
-	const processedSubDemands = subDemands.map(({ attributes }) => ({
-		html: attributes?.field_fieldset_text?.processed
-	}));
-
-	//Load examples
-	const examplesResponse = await fetch(`${nodeURL}/${DRUPAL_EXAMPLES_FIELD}`);
-	if (!examplesResponse.ok) {
-		throw new Error(`Examples response status: ${examplesResponse.status}`);
-	}
-
-	const { data: examples } = await examplesResponse.json();
-
-	//Load examples images information
-	const processedExamples = await Promise.all(
-		examples.map(async (example) => {
-			const imageRelation = example.relationships[DRUPAL_EXAMPLE_IMAGE_FIELD];
-			if (imageRelation?.data?.id) {
-				const imageResponse = await fetch(imageRelation.links.related.href);
-				if (!imageResponse.ok) {
-					throw new Error(`Example image response status: ${imageResponse.status}`);
-				}
-
-				const { data: image } = await imageResponse.json();
-
-				return {
-					html: example.attributes.field_fieldset_text.processed,
-					imageURL: `${DRUPAL_BASE_URL}${image.attributes.uri.url}`,
-					imageAlt: imageRelation.data.meta.alt
-				};
-			}
-			return {
-				html: example.attributes?.field_fieldset_text?.processed
-			};
-		})
-	);
-
-	//Load partners
-	const partnersResponse = await fetch(`${nodeURL}/${DRUPAL_PARTNERS_FIELD}`);
-	if (!partnersResponse.ok) {
-		throw new Error(`Partners response status: ${partnersResponse.status}`);
-	}
-
-	const { data: partners } = await partnersResponse.json();
-
-	//Load examples images information
-	const processedPartners = await Promise.all(
-		partners.map(async (partner) => {
-			const imageRelation = partner.relationships[DRUPAL_EXAMPLE_IMAGE_FIELD];
-			if (imageRelation?.data?.id) {
-				const imageResponse = await fetch(imageRelation.links.related.href);
-				if (!imageResponse.ok) {
-					throw new Error(`Partner image response status: ${imageResponse.status}`);
-				}
-
-				const { data: image } = await imageResponse.json();
-
-				return {
-					html: partner.attributes.field_fieldset_text.processed,
-					imageURL: `${DRUPAL_BASE_URL}${image.attributes.uri.url}`,
-					imageAlt: imageRelation.data.meta.alt
-				};
-			}
-			return {
-				html: partner.attributes?.field_fieldset_text?.processed
-			};
-		})
-	);
-
-
-	const processedNode = {
+export const load: PageServerLoad = async ({ params }) => {
+	return {
 		nodeId: params.nodeId,
-		subDemands: processedSubDemands,
-		examples: processedExamples,
-		partners: processedPartners,
+		subDemands: getSubdemands(params.nodeId),
+		examples: getExamples(params.nodeId),
+		partners: await getPartners(params.nodeId),
 	};
-
-	return processedNode;
 };
