@@ -6,7 +6,7 @@
 
 	let { data }: { data: PageData & LayoutData } = $props();
 
-	const demand = data.demands.find(demand => demand.id === data.nodeId)
+	const demand = data.demands.find((demand) => demand.id === data.nodeId);
 </script>
 
 <svelte:head>
@@ -22,15 +22,15 @@
 	<div>
 		{@html demand.body.processed}
 		{#if data.subDemands?.length > 0}
-		{#each data.subDemands as { attributes: { field_fieldset_text } }}
-			<Dropdown html={field_fieldset_text.processed} />
-		{/each}
+			{#each data.subDemands as { html }}
+				<Dropdown html={html} />
+			{/each}
 		{/if}
 		{#if data.examples?.length > 0 && demand.examplesTitle}
-		<h2>{demand.examplesTitle}</h2>
-		{#each data.examples as { attributes: { field_fieldset_text } }}
-			<Example html={field_fieldset_text.processed} />
-		{/each}
+			<h2>{demand.examplesTitle}</h2>
+			{#each data.examples as { html, imageURL, imageAlt }}
+				<Example {...{ html, imageURL, imageAlt }} />
+			{/each}
 		{/if}
 	</div>
 </main>
