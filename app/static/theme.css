@@ -113,6 +113,7 @@ strong {
 }
 
 a {
+	cursor: pointer;
 	color: var(--main-color);
 	text-decoration: none;
 

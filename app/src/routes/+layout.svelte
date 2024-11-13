@@ -1,13 +1,16 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { LayoutData } from './$types';
+	import {PUBLIC_CAMPAIGN_ORGANIZER_URL} from '$env/static/public';
 	let { children, data }: { children: Snippet, data: LayoutData } = $props();
 </script>
 
 <div>
 	<div class="wrapper">
-	{@render children()}</div>
+		{@render children()}
+	</div>
 	<footer>
+		<a href={PUBLIC_CAMPAIGN_ORGANIZER_URL} target="_blank"><img alt="Privacy international's logo" src="/logo.png"></a>
 		<a href="/about">{`${data.about.title} >`}</a>
 	</footer>
 </div>
@@ -28,14 +31,24 @@
 	}
 
 	footer {
-		display: block;
+		display: flex;
+		justify-content: space-between;
 		position: absolute;
 		left: 0;
 		bottom: 0;
 		width: 100%;
-		height: var(--spacing-4);
-		padding: var(--spacing-1);
+		height: calc(var(--spacing-4) + (2 * var(--spacing-1)) );
+		padding: var(--spacing-1) var(--spacing-3);
 		border-top: solid 1px black;
-		text-align: right;
+	}
+
+	a {
+		display: inline-block;
+		height: var(--spacing-4);
+	}
+
+	img {
+		width: var(--spacing-4);
+		height: 100%;
 	}
 </style>
