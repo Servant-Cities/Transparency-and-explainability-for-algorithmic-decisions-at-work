@@ -5,6 +5,13 @@
 	let { data }: { data: PageData & LayoutData } = $props();
 </script>
 
+<svelte:head>
+	{#each data.about.metatag as { tag, attributes }}
+		{@html `<${tag} ${Object.entries(attributes)
+			.map(([key, value]) => `${key}="${value}"`)
+			.join(' ')}/>`}
+	{/each}
+</svelte:head>
 <main>
 	<a class="homepage_link" href="/"
 		>{`${data.homepage.title} >`}</a

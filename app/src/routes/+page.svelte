@@ -2,6 +2,14 @@
 	import type { LayoutData } from './$types';
 	let { data }: { data: LayoutData } = $props();
 </script>
+
+<svelte:head>
+	{#each data.homepage.metatag as { tag, attributes }}
+		{@html `<${tag} ${Object.entries(attributes)
+			.map(([key, value]) => `${key}="${value}"`)
+			.join(' ')}/>`}
+	{/each}
+</svelte:head>
 <main>
 	<h1>{data.homepage.title}</h1>
 	{@html data.homepage.body.processed}
