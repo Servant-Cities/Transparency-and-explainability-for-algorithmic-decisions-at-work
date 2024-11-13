@@ -60,9 +60,20 @@ export const load: PageLoad = async ({}) => {
 		}
 	});
 
+	/*
+	const socialsURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/menu_link_content/menu_link_content`;
+
+	const socialsResponse = await fetch(socialsURL);
+	if (!socialsResponse.ok) {
+		throw new Error(`Socials response status: ${socialsResponse.status}`);
+	}
+	const { data: socials } = await socialsResponse.json();
+*/
 	return {
 		homepage,
 		demands,
-		about
+		about,
+		//socials,
+		//data
 	};
 };
