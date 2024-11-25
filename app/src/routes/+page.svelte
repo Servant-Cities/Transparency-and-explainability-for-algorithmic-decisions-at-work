@@ -15,7 +15,9 @@
 </svelte:head>
 <main>
 	<h1>{homepage.title}</h1>
-	{@html homepage.body.processed}
+	<section class="intro">
+		{@html homepage.body.processed}
+	</section>
 	<nav>
 		<ul>
 			{#each demands as demand, index}

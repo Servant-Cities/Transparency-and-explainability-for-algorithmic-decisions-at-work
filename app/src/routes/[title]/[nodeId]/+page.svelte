@@ -22,7 +22,9 @@
 	<a class="homepage_link" href="/">{`${homepage.title} >`}</a>
 	<h1>{page.title}</h1>
 	<div>
-		{@html page.body.processed}
+		<section class="intro">
+			{@html page.body.processed}
+		</section>
 		{#await data.subDemands then subDemands}
 			{#if subDemands?.length > 0}
 				{#each subDemands as { html }}

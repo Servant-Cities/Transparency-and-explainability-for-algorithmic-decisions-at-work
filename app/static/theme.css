@@ -57,6 +57,10 @@ main {
 	margin-bottom: var(--spacing-4);
 }
 
+.intro {
+	padding-bottom: var(--spacing-4);
+}
+
 h1 {
 	font-family: var(--font-family);
 	font-size: var(--font-size-5);
@@ -71,6 +75,7 @@ h2 {
 	font-size: var(--font-size-4);
 	font-weight: 700;
 	margin: var(--spacing-4) 0;
+	padding-top: var(--spacing-4);
 	color: var(--main-color);
 }
 
