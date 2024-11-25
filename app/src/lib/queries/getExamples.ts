@@ -31,8 +31,8 @@ const getExamples = async (nodeId: string) => {
 				const { data: image } = await imageResponse.json();
 
 				return {
-					html: example.attributes.field_fieldset_text.processed,
-					imageURL: `${DRUPAL_BASE_URL}${image.attributes.uri.url}`,
+					html: example.attributes.field_fieldset_text?.processed,
+					imageURL: `${DRUPAL_BASE_URL}${image?.attributes.uri?.url}`,
 					imageAlt: imageRelation.data.meta.alt
 				};
 			}

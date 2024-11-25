@@ -1,11 +1,9 @@
 <script lang="ts">
-	let { html, imageURL, imageAlt }: { html: string;  imageURL: string; imageAlt: string } = $props();
+	let { html, imageURL, imageAlt }: { html: string; imageURL: string; imageAlt: string } = $props();
 </script>
 
-<section class="content">
-	<div>
-		{@html html}
-	</div>
+<section>
+	{@html html}
 	{#if imageURL}
 		<img alt={imageAlt} src={imageURL} />
 	{/if}
@@ -17,33 +15,38 @@
 		width: 100%;
 		vertical-align: top;
 		margin-top: var(--spacing-4);
-	}
 
-	.content {
-		& > :global(div > div:first-child) {
+		& > :global(div:first-child) {
 			display: inline-block;
-			width: calc(100% - var(--spacing-2) - 330px);
+			width: calc(100% - var(--spacing-2) - 300px);
 			margin-right: var(--spacing-2);
 		}
 
-		& > img {
+		& > img,
+		> :global(div:nth-child(2)) {
 			display: inline-block;
-			width: 320px;
+			width: 290px;
+			height: 290px;
 			max-width: 100%;
-			margin-top: var(--spacing-3);
 			object-fit: cover;
+			padding: 0 0 var(--spacing-2) var(--spacing-2);
+		}
+
+		& > :global(div:nth-child(2)) {
+			margin-top: var(--spacing-4);
 		}
 	}
 
 	@media only screen and (max-width: 900px) {
 		section {
 			flex-direction: column;
-		}
-
-		.content {
 			& :global(div:first-child) {
 				width: 100%;
 				margin-right: 0;
+			}
+
+			& > img {
+				padding: var(--spacing-2);
 			}
 		}
 	}
