@@ -1,10 +1,19 @@
 <script lang="ts">
-	let { html, imageURL, imageAlt }: { html: string;  imageURL: string; imageAlt: string } = $props();
+	let {
+		html,
+		title,
+		url,
+		imageURL,
+		imageAlt
+	}: { html: string; title: string; url: string; imageURL: string; imageAlt: string } = $props();
 </script>
 
 <div class="partner">
-    <img src={imageURL} alt={imageAlt}/>
-    <div>{@html html}</div>
+	<a href={url} target="_blank"><img src={imageURL} alt={imageAlt} /></a>
+	<div>
+		<h4><a href={url} target="_blank">{title}</a></h4>
+		{@html html}
+	</div>
 </div>
 
 <style>
@@ -21,7 +30,7 @@
 			margin-right: var(--spacing-2);
 		}
 
-		& > img {
+		& > a > img {
 			display: inline-block;
 			width: 180px;
 			max-width: 100%;
@@ -40,7 +49,7 @@
 				margin-right: 0;
 			}
 
-			& > img {
+			& > a > img {
 				margin-bottom: var(--spacing-3);
 			}
 		}

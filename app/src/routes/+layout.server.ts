@@ -39,7 +39,7 @@ export const load: PageLoad = async ({}) => {
 		if (imageRelation?.data?.id) {
 			const relationResponse = await fetch(imageRelation.links.related.href);
 			if (!relationResponse.ok) {
-				throw new Error(`Demand image response status: ${relationResponse.status}`);
+				throw new Error(`Demand  relation response status: ${relationResponse.status}`);
 			}
 
 			const { data: relation } = await relationResponse.json();

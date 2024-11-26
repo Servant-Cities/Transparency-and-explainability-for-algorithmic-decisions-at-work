@@ -15,7 +15,6 @@ export const load: PageServerLoad = async ({ params, setHeaders }) => {
 	});
 
 	return {
-		nodeId: params.nodeId,
 		subDemands: getSubdemands(params.nodeId),
 		examples: getExamples(params.nodeId),
 		partners: getPartners(params.nodeId),

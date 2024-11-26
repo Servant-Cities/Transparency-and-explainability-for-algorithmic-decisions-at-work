@@ -26,6 +26,8 @@ const getPartners = async (nodeId: string) => {
 
 				return {
 					html: partner.attributes.field_fieldset_text.processed,
+					title: partner.attributes.field_link.title,
+					url: partner.attributes.field_link.uri,
 					imageURL: `${DRUPAL_BASE_URL}${image.attributes.uri.url}`,
 					imageAlt: imageRelation.data.meta.alt
 				};

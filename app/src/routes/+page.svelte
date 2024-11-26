@@ -1,9 +1,11 @@
 <script lang="ts">
 	import DemandCard from '$lib/Components/DemandCard.svelte';
- 	import type { LayoutData } from './$types';
+	import type { LayoutData } from './$types';
 	let { data }: { data: LayoutData } = $props();
 	const homepage = data.processedNodes[data.homepageIndex];
-	const demands = data.processedNodes.filter((_, index) => index !== data.homepageIndex && index !== data.aboutPageIndex)
+	const demands = data.processedNodes.filter(
+		(_, index) => index !== data.homepageIndex && index !== data.aboutPageIndex
+	);
 </script>
 
 <svelte:head>
@@ -13,19 +15,18 @@
 			.join(' ')}/>`}
 	{/each}
 </svelte:head>
-<main>
-	<h1>{homepage.title}</h1>
-	<section class="intro">
-		{@html homepage.body.processed}
-	</section>
-	<nav>
-		<ul>
-			{#each demands as demand, index}
-				<DemandCard demand={demand} number={index + 1}/>
-			{/each}
-		</ul>
-	</nav>
-</main>
+
+<h1>{homepage.title}</h1>
+<section class="intro">
+	{@html homepage.body.processed}
+</section>
+<nav>
+	<ul>
+		{#each demands as demand, index}
+			<DemandCard {demand} number={index + 1} />
+		{/each}
+	</ul>
+</nav>
 
 <style>
 	ul {

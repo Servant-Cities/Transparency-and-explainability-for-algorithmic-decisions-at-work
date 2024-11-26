@@ -16,7 +16,6 @@
 		vertical-align: top;
 		margin-top: var(--spacing-4);
 		padding-bottom: calc(var(--spacing-4) * 2);
-		background-color: beige;
 
 		& > :global(*:first-child) {
 			display: inline-block;
