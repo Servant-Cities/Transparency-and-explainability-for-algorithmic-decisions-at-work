@@ -1,0 +1,11 @@
+[Unit]
+Description=Name of the project
+After=network.target[Service]
+ExecStart=/usr/bin/node /path/to/name-of-the-project/app/build
+WorkingDirectory=/path/to/name-of-the-project/app
+Restart=always
+User=root
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
