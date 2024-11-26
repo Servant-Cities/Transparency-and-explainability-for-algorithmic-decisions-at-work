@@ -15,11 +15,13 @@
 		width: 100%;
 		vertical-align: top;
 		margin-top: var(--spacing-4);
+		padding-bottom: calc(var(--spacing-4) * 2);
+		background-color: beige;
 
-		& > :global(div:first-child) {
+		& > :global(*:first-child) {
 			display: inline-block;
-			width: calc(100% - var(--spacing-2) - 300px);
-			margin-right: var(--spacing-2);
+			width: calc(100% - var(--spacing-2) - 290px);
+			margin-right: calc(var(--spacing-3) * 2);
 		}
 
 		& > img,
@@ -29,11 +31,14 @@
 			height: 290px;
 			max-width: 100%;
 			object-fit: cover;
-			padding: 0 0 var(--spacing-2) var(--spacing-2);
 		}
 
 		& > :global(div:nth-child(2)) {
 			margin-top: var(--spacing-4);
+		}
+
+		& > img {
+			border-radius: var(--spacing-3);
 		}
 	}
 
@@ -43,6 +48,11 @@
 			& :global(div:first-child) {
 				width: 100%;
 				margin-right: 0;
+			}
+
+			& > :global(div:nth-child(2)) {
+				width: auto;
+				height: auto;
 			}
 
 			& > img {

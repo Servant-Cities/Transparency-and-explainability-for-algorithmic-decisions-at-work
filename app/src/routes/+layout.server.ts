@@ -32,7 +32,29 @@ export const load: PageLoad = async ({}) => {
 	const indexesMap = {};
 	let homepageIndex;
 	let aboutPageIndex;
-	const processedNodes = data.map(({ id, attributes, relationships }, index) => {
+	const processedNodes = await Promise.all(data.map(async ({ id, attributes, relationships }, index) => {
+		const imageRelation = relationships.field_media;
+		let imageURL
+		let imageAlt
+		if (imageRelation?.data?.id) {
+			const relationResponse = await fetch(imageRelation.links.related.href);
+			if (!relationResponse.ok) {
+				throw new Error(`Demand image response status: ${relationResponse.status}`);
+			}
+
+			const { data: relation } = await relationResponse.json();
+
+			const imageResponse = await fetch(relation.relationships.field_media_image.links.related.href);
+			if (!imageResponse.ok) {
+				throw new Error(`Demand image response status: ${imageResponse.status}`);
+			}
+
+			const { data: image } = await imageResponse.json();
+
+			imageURL = `${DRUPAL_BASE_URL}${image?.attributes.uri?.url}`,
+			imageAlt = relation.relationships.field_media_image.data.meta.alt
+		}
+
 		const processedNode = {
 			id,
 			pageType:
@@ -40,7 +62,9 @@ export const load: PageLoad = async ({}) => {
 			body: attributes.body,
 			title: attributes.title,
 			metatag: attributes.metatag,
-			examplesTitle: attributes[DRUPAL_EXAMPLES_TITLE_FIELD]
+			examplesTitle: attributes[DRUPAL_EXAMPLES_TITLE_FIELD],
+			imageURL,
+			imageAlt
 		};
 		indexesMap[id] = index;
 		switch (processedNode.pageType) {
@@ -56,7 +80,7 @@ export const load: PageLoad = async ({}) => {
 				);
 		}
 		return processedNode;
-	});
+	}));
 
 	/*
 	const socialsURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/menu_link_content/menu_link_content`;
@@ -69,10 +93,10 @@ export const load: PageLoad = async ({}) => {
 */
 
 	return {
+		processedNodes,
 		indexesMap,
 		homepageIndex,
 		aboutPageIndex,
-		processedNodes
 		//socials,
 	};
 };

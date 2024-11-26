@@ -4,7 +4,7 @@ const {
 	DRUPAL_JSON_API_PATH,
 	DRUPAL_NODES_PATH,
 	DRUPAL_EXAMPLES_FIELD,
-	DRUPAL_EXAMPLE_IMAGE_FIELD,
+	DRUPAL_IMAGE_FIELD,
 } = env;
 
 const getExamples = async (nodeId: string) => {
@@ -21,7 +21,7 @@ const getExamples = async (nodeId: string) => {
 	//Load examples images information
 	return Promise.all(
 		examples.map(async (example) => {
-			const imageRelation = example.relationships[DRUPAL_EXAMPLE_IMAGE_FIELD];
+			const imageRelation = example.relationships[DRUPAL_IMAGE_FIELD];
 			if (imageRelation?.data?.id) {
 				const imageResponse = await fetch(imageRelation.links.related.href);
 				if (!imageResponse.ok) {
