@@ -1,9 +1,9 @@
 import { env } from '$env/dynamic/private';
 import type { PageServerLoad } from '../$types';
 
-import getExamples from '$lib/queries/getExamples';
-import getPartners from '$lib/queries/getPartners';
-import getSubdemands from '$lib/queries/getSubdemands';
+import getExamples from '$lib/server/queries/getExamples';
+import getPartners from '$lib/server/queries/getPartners';
+import getSubdemands from '$lib/server/queries/getSubdemands';
 
 const {
 	CACHE_CONTROL_TIME,
