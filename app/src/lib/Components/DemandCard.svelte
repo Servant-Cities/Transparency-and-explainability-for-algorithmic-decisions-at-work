@@ -1,8 +1,11 @@
 <script lang="ts">
-	import formatTitleURL from "$lib/utils/formatTitleURL";
+	import formatTitleURL from '$lib/utils/formatTitleURL';
 
-	let { demand, number }: { demand: {title: string; id: string, imageURL: string; imageAlt: string }, number: number } = $props();
-
+	let {
+		demand,
+		number
+	}: { demand: { title: string; id: string; imageURL: string; imageAlt: string }; number: number } =
+		$props();
 </script>
 
 <li>
@@ -32,7 +35,9 @@
 		padding: 0 var(--spacing-4) var(--spacing-4);
 	}
 	img {
-		width: 65%;
+		width: 75%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
 		border-radius: var(--spacing-2);
 		margin: var(--spacing-1) 0;
 	}
@@ -72,7 +77,17 @@
 		li {
 			width: 100%;
 			margin: var(--spacing-3) 0;
-			padding: var(--spacing-4) var(--spacing-4) 54% var(--spacing-4);
+			padding: var(--spacing-4);
+		}
+
+		.li_footer {
+			position: relative;
+			padding: 0;
+		}
+
+		img {
+			max-width: 100%;
+			width: 280px;
 		}
 	}
 </style>

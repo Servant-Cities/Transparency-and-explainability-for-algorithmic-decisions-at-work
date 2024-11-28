@@ -59,6 +59,7 @@ main {
 
 .intro {
 	padding-bottom: var(--spacing-4);
+	font-size: var(--font-size-4) !important;
 }
 
 h1 {
@@ -66,7 +67,7 @@ h1 {
 	font-size: var(--font-size-5);
 	font-weight: 900;
 	color: var(--main-color);
-	max-width: 800px;
+	max-width: 700px;
 	margin-bottom: 24px;
 }
 
@@ -105,7 +106,9 @@ li {
 	padding-bottom: var(--spacing-2);
 
 	& > a {
+		text-underline-offset: 3px;
 		text-decoration: underline;
+		text-decoration-thickness: 1px;
 	}
 }
 

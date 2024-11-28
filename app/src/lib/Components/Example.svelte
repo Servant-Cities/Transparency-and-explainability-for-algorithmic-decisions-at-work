@@ -27,9 +27,9 @@
 		> :global(div:nth-child(2)) {
 			display: inline-block;
 			width: 290px;
-			height: 290px;
+			height: auto;
 			max-width: 100%;
-			object-fit: cover;
+			align-self: start;
 		}
 
 		& > :global(div:nth-child(2)) {
@@ -38,6 +38,8 @@
 
 		& > img {
 			border-radius: var(--spacing-3);
+			aspect-ratio: 16 / 9;
+			object-fit: cover;
 		}
 	}
 

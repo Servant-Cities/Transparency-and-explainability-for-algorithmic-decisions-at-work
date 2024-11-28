@@ -7,7 +7,7 @@
 	import Partner from '$lib/Components/Partner.svelte';
 
 	let { data }: { data: PageData & LayoutData } = $props();
-	const nodeId = $pageStore.params.nodeId;
+	const nodeId = $derived($pageStore.params.nodeId);
 	const page = $derived(data.processedNodes[data.indexesMap[nodeId]]);
 	const homepage = data.processedNodes[data.homepageIndex];
 </script>

@@ -33,7 +33,7 @@
 		width: 100%;
 		max-width: 1440px;
 		margin: 0 auto;
-		padding: var(--spacing-3);
+		padding: calc(var(--spacing-4) * 2);
 		padding-top: calc(var(--spacing-4) + var(--spacing-3));
 		padding-bottom: calc(var(--spacing-4) + (2 * var(--spacing-3)));
 	}
@@ -83,5 +83,19 @@
 	img {
 		width: var(--spacing-4);
 		height: 100%;
+	}
+
+	@media only screen and (max-width: 940px) {
+		.wrapper {
+			padding: var(--spacing-4);
+			padding-bottom: calc(var(--spacing-4) + (2 * var(--spacing-3)));
+		}
+	}
+
+	@media only screen and (max-width: 640px) {
+		.wrapper {
+			padding: var(--spacing-3);
+			padding-bottom: calc(var(--spacing-4) + (2 * var(--spacing-3)));
+		}
 	}
 </style>
