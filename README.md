@@ -34,15 +34,15 @@ git clone https://github.com/Servant-Cities/Transparency-and-explainability-for-
 ```
 
 ### Create a production bundle
-1. Create the .env file (eg: with nano)
+1. Move to the app folder and create the .env file (eg: with nano)
 ```
+cd Transparency-and-explainability-for-algorithmic-decisions-at-work/app
 cp .env.example .env
 nano .env
 ```
 
-2. Move to the app folder and install dependencies
+2. Install dependencies and build the app
 ```
-cd Transparency-and-explainability-for-algorithmic-decisions-at-work/app
 yarn
 yarn build
 ```
