@@ -33,8 +33,14 @@ Also make sure the port 3000 is availble and open for http connections.
 git clone https://github.com/Servant-Cities/Transparency-and-explainability-for-algorithmic-decisions-at-work.git
 ```
 
-### Build the app
-Move to the app folder and install dependencies
+### Create a production bundle
+1. Create the .env file (eg: with nano)
+```
+cp .env.example .env
+nano .env
+```
+
+2. Move to the app folder and install dependencies
 ```
 cd Transparency-and-explainability-for-algorithmic-decisions-at-work/app
 yarn
@@ -42,17 +48,11 @@ yarn build
 ```
 
 ### Run the app
-1. Make sure you are in the app folder and have followed the previous steps
+1. Make sure you are in the app folder and have successfully ran the previous commands
 
-2. Create the .env file (eg: with nano)
+2. Run this command to start the app and make it accessible on port 3000
 ```
-cp .env.example .env
-nano .env
-```
-
-3. Using node v18 or more (you can use [nvm](https://github.com/nvm-sh/nvm) to specify it in case multiple versions are installed), run this command to start the app and make it accessible on port 3000
-```
-node build
+export $(grep -v '^#' .env | xargs) && node build
 ```
 
 
@@ -62,16 +62,15 @@ node build
 * The working directory is the path to the absolute-path-to/app folder (you need a build folder and a correct.env file)
 * The ExecStart should use the path to absolute-path-to/app/build
 
-If you followed the previous steps, first stop the app using CTRL + C you can get the absolute path to /app using the following command:
-```
-pwd
-```
-
 2. You should also set up a reverse proxy of your choice to apply SSL certificates and forward requests for the domain allocated to the app. ([Example with Nginx](https://www.baeldung.com/nginx-forward-proxy))
 
 
 ### Clean behind
-Only the .env file, node modules and build folder are necessary to run the app, you can delete the Design folder and all the rest if you want to keep a clean directory (be aware this might cause conflicts if you want to update the app using git pull instead of delete it and redeploy)
+Only the following files are required to run the app:
+* .env file 
+* build folder
+
+You can delete all the rest (be aware this might cause conflicts if you want to update the app using git pull instead of cloning the app again)
 
 
 

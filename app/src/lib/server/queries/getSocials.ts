@@ -21,13 +21,19 @@ const getSocials = async () => {
 		);
 	}
 
-	const socialsResponse = await fetch(socialsURL, { headers });
+	const socialsResponse = await fetch(socialsURL);
 	if (!socialsResponse.ok) {
 		console.warn(`Socials response status: ${socialsResponse.status}`);
 		return [];
 	}
 
-	return socialsResponse.json().then(({ data: socials }) => socials);
+	const socialsData = await  socialsResponse.json();
+
+	const socialsLinksResponse = await fetch(socialsData?.links?.self?.href, { headers });
+	
+	const data = await socialsLinksResponse.json();
+
+	return data;
 };
 
 export default getSocials;
