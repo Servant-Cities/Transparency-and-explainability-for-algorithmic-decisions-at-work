@@ -3,12 +3,9 @@ const {
 	DRUPAL_BASE_URL,
 	DRUPAL_JSON_API_PATH,
 	DRUPAL_MICROSITE_UUID,
-	DRUPAL_PAGE_TYPE_FIELD,
 	HOME_PAGE_TYPE_ID,
 	DEMAND_TYPE_ID,
 	ABOUT_PAGE_TYPE_ID,
-	DRUPAL_NODES_PATH,
-	DRUPAL_EXAMPLES_TITLE_FIELD,
 } = env;
 
 const pageTypes = {
@@ -19,7 +16,7 @@ const pageTypes = {
 
 const getMicrositeNodesMap = async () => {
 	// Get the nodes associated to this microsite
-	const nodesURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}${DRUPAL_NODES_PATH}?filter[field_microsite.id]=${DRUPAL_MICROSITE_UUID}`;
+	const nodesURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/node/external_content?filter[field_microsite.id]=${DRUPAL_MICROSITE_UUID}`;
 
 	const response = await fetch(nodesURL);
 	if (!response.ok) {
@@ -57,11 +54,11 @@ const getMicrositeNodesMap = async () => {
 		const processedNode = {
 			id,
 			pageType:
-				pageTypes[relationships[DRUPAL_PAGE_TYPE_FIELD].data.meta.drupal_internal__target_id],
+				pageTypes[relationships.field_microsite_page_type.data.meta.drupal_internal__target_id],
 			body: attributes.body,
 			title: attributes.title,
 			metatag: attributes.metatag,
-			examplesTitle: attributes[DRUPAL_EXAMPLES_TITLE_FIELD],
+			examplesTitle: attributes.field_example_paragraphs_title,
 			imageURL,
 			imageAlt
 		};
@@ -75,7 +72,7 @@ const getMicrositeNodesMap = async () => {
 				break;
 			default:
 				console.warn(
-					`Page type ${relationships[DRUPAL_PAGE_TYPE_FIELD].data.meta.drupal_internal__target_id} is not supported, it will be considered as a Demand by default`
+					`Page type ${relationships.field_microsite_page_type.data.meta.drupal_internal__target_id} is not supported, it will be considered as a Demand by default`
 				);
 		}
 		return processedNode;

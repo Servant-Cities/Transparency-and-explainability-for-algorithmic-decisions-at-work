@@ -1,11 +1,11 @@
 import { env } from '$env/dynamic/private';
-const { DRUPAL_BASE_URL, DRUPAL_JSON_API_PATH, DRUPAL_NODES_PATH, DRUPAL_IMAGE_FIELD, DRUPAL_PARTNERS_FIELD } = env;
+const { DRUPAL_BASE_URL, DRUPAL_JSON_API_PATH } = env;
 
 const getPartners = async (nodeId: string) => {
-    const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}${DRUPAL_NODES_PATH}/${nodeId}`;
+    const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/node/external_content/${nodeId}`;
 
     // Load partners
-	const partnersResponse = await fetch(`${nodeURL}/${DRUPAL_PARTNERS_FIELD}`);
+	const partnersResponse = await fetch(`${nodeURL}/field_external_content_allies`);
 	if (!partnersResponse.ok) {
 		throw new Error(`Partners response status: ${partnersResponse.status}`);
 	}
@@ -15,7 +15,7 @@ const getPartners = async (nodeId: string) => {
     //Load partners images information
     return Promise.all(
 		partners.map(async (partner) => {
-			const imageRelation = partner.relationships[DRUPAL_IMAGE_FIELD];
+			const imageRelation = partner.relationships.field_fieldset_image;
 			if (imageRelation?.data?.id) {
 				const imageResponse = await fetch(imageRelation.links.related.href);
 				if (!imageResponse.ok) {

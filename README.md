@@ -22,25 +22,21 @@ yarn dev
 
 Please make sure the OS supports the following softwares, they are installed and executable globally.
 * [git](https://git-scm.com/)
-* [nodejs v20](https://nodejs.org)
+* [nodejs v18](https://nodejs.org)
 * [yarn](https://yarnpkg.com/)
 * a text editor (like vi or nano)
 
 Also make sure the port 3000 is availble and open for http connections.
 
 ### Load the source code
-
-1. Set up an authorized git user or allow ssh access to the repository for the server where you want to deploy the app
-
-2. Clone the project
 ```
-git clone https://url-of-the-repository/name-of-the-project 
+git clone https://github.com/Servant-Cities/Transparency-and-explainability-for-algorithmic-decisions-at-work.git
 ```
 
 ### Build the app
 Move to the app folder and install dependencies
 ```
-cd name-of-the-project/app
+cd Transparency-and-explainability-for-algorithmic-decisions-at-work/app
 yarn
 yarn build
 ```
@@ -54,24 +50,24 @@ cp .env.example .env
 nano .env
 ```
 
-3. Using node v20 or more (you can use [nvm](https://github.com/nvm-sh/nvm) to specify it in case multiple versions are installed), run this command to start the app and make it accessible on port 3000
+3. Using node v18 or more (you can use [nvm](https://github.com/nvm-sh/nvm) to specify it in case multiple versions are installed), run this command to start the app and make it accessible on port 3000
 ```
-node --env-file=.env build
+node build
 ```
 
 
 ### Setup for production
 1. To keep the app running after the end of the user session or in case of a crash, you'll need to [create a service](https://medium.com/@lnsolutionsee/how-to-install-and-automatically-run-a-node-js-app-with-systemd-29a610b0bd35).
 
-* The working directory is the path to the /app folder (you need a build folder and a correct.env file)
-* The ExecStart should use the path to /app/build
+* The working directory is the path to the absolute-path-to/app folder (you need a build folder and a correct.env file)
+* The ExecStart should use the path to absolute-path-to/app/build
 
 If you followed the previous steps, first stop the app using CTRL + C you can get the absolute path to /app using the following command:
 ```
 pwd
 ```
 
-2. You should also set up a reverse proxy of your choice to apply SSL certificates and forward requests for the domain allocated to the app. ((Example with Nginx)[https://www.baeldung.com/nginx-forward-proxy])
+2. You should also set up a reverse proxy of your choice to apply SSL certificates and forward requests for the domain allocated to the app. ([Example with Nginx](https://www.baeldung.com/nginx-forward-proxy))
 
 
 ### Clean behind

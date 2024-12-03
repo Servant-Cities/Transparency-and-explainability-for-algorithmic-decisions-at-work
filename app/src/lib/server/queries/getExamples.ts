@@ -2,16 +2,13 @@ import { env } from '$env/dynamic/private';
 const {
 	DRUPAL_BASE_URL,
 	DRUPAL_JSON_API_PATH,
-	DRUPAL_NODES_PATH,
-	DRUPAL_EXAMPLES_FIELD,
-	DRUPAL_IMAGE_FIELD,
 } = env;
 
 const getExamples = async (nodeId: string) => {
-    const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}${DRUPAL_NODES_PATH}/${nodeId}`;
+    const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/node/external_content/${nodeId}`;
     
     //Load examples
-	const examplesResponse = await fetch(`${nodeURL}/${DRUPAL_EXAMPLES_FIELD}`);
+	const examplesResponse = await fetch(`${nodeURL}/field_external_content_example_p`);
 	if (!examplesResponse.ok) {
 		throw new Error(`Examples response status: ${examplesResponse.status}`);
 	}
@@ -21,7 +18,7 @@ const getExamples = async (nodeId: string) => {
 	//Load examples images information
 	return Promise.all(
 		examples.map(async (example) => {
-			const imageRelation = example.relationships[DRUPAL_IMAGE_FIELD];
+			const imageRelation = example.relationships.field_fieldset_image;
 			if (imageRelation?.data?.id) {
 				const imageResponse = await fetch(imageRelation.links.related.href);
 				if (!imageResponse.ok) {

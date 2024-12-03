@@ -3,14 +3,12 @@ import { env } from '$env/dynamic/private';
 const {
 	DRUPAL_BASE_URL,
 	DRUPAL_JSON_API_PATH,
-	DRUPAL_NODES_PATH,
-	DRUPAL_SUBDEMANDS_FIELD,
 } = env;
 
 const getSubdemands = async (nodeId: string) => {
-	const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}${DRUPAL_NODES_PATH}/${nodeId}`;
+	const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/node/external_content/${nodeId}`;
 
-	const subDemandsResponse = await fetch(`${nodeURL}/${DRUPAL_SUBDEMANDS_FIELD}`);
+	const subDemandsResponse = await fetch(`${nodeURL}/field_repeating_image_and_text`);
 	if (!subDemandsResponse.ok) {
 		throw new Error(`Subdemands response status: ${subDemandsResponse.status}`);
 	}
