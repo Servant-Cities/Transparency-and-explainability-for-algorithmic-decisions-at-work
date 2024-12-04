@@ -13,10 +13,14 @@
 	);
 
 	let y: number = $state(0);
+	let opened: boolean = $state(false);
+	const ontouchstart = () => {
+		opened = !opened;
+	};
 </script>
 
 <svelte:window bind:scrollY={y} />
-<nav class:scrolled={y > 60}>
+<nav class:scrolled={y > 60} class:opened {ontouchstart}>
 	<ul>
 		<li><a class:active={!nodeId} href="/">Homepage</a></li>
 		{#each demands as { title, id }, index}
@@ -51,12 +55,28 @@
 	.scrolled {
 		max-width: var(--spacing-4);
 		max-height: var(--spacing-4);
-        box-sizing:border-box;
 		cursor: zoom-in;
+		padding: unset;
+		padding-top: var(--spacing-4);
+		&::after {
+			content: '☰';
+			display: block;
+			color: var(--main-color);
+			font-size: var(--spacing-3);
+			font-weight: 900;
+			line-height: var(--spacing-4);
+			position: absolute;
+			left: calc(50% - 0.5em);
+			top: 0;
+		}
 
 		&:hover {
-			max-width: fit-content;
-			max-height: fit-content;
+			padding: var(--spacing-2);
+			max-width: none;
+			max-height: none;
+			&::after {
+				content: ' ';
+			}
 		}
 	}
 
@@ -90,9 +110,34 @@
 	}
 
 	@media only screen and (max-width: 900px) {
-		nav {
+		nav, .scrolled {
 			max-width: var(--spacing-4);
 			max-height: var(--spacing-4);
+			cursor: zoom-in;
+			padding: unset;
+			padding-top: var(--spacing-4);
+			&::after {
+				content: '☰';
+				display: block;
+				color: var(--main-color);
+				font-size: var(--spacing-3);
+				font-weight: 900;
+				line-height: var(--spacing-4);
+				position: absolute;
+				left: calc(50% - 0.5em);
+				top: 0;
+			}
+		}
+
+		.opened {
+			padding: var(--spacing-2);
+			max-width: none;
+			max-height: none;
+			&::after {
+				content: '⛌';
+                right: var(--spacing-2);
+                left: unset;
+			}
 		}
 	}
 </style>
