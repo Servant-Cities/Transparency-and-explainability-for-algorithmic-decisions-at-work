@@ -24,6 +24,11 @@
 		<a href={PUBLIC_CAMPAIGN_ORGANIZER_URL} target="_blank">
 			<img alt="Privacy international's logo" src="/logo.png" />
 		</a>
+		<div>
+			{#each data.socials as {title, url}}
+				<a href={url} target="_blank" aria-label={title} class="social_link"><img src={`/socials/${title}.svg`} alt={title}/></a>
+			{/each}
+		</div>
 	</footer>
 </div>
 
@@ -78,6 +83,10 @@
 	a {
 		display: inline-block;
 		height: var(--spacing-4);
+	}
+
+	.social_link {
+		padding: var(--spacing-1);
 	}
 
 	img {
