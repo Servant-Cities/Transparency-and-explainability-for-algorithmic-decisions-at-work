@@ -25,8 +25,10 @@
 			<img alt="Privacy international's logo" src="/logo.png" />
 		</a>
 		<div>
-			{#each data.socials as {title, url}}
-				<a href={url} target="_blank" aria-label={title} class="social_link"><img src={`/socials/${title}.svg`} alt={title}/></a>
+			{#each data.socials as { title, url }}
+				<a href={url} target="_blank" aria-label={title} class="social_link">
+					<img src={`/socials/${title}.svg`} alt={title} />
+				</a>
 			{/each}
 		</div>
 	</footer>
