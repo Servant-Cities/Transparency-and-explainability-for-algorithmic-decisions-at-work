@@ -5,6 +5,7 @@
 	import Dropdown from '$lib/Components/Dropdown.svelte';
 	import Example from '$lib/Components/Example.svelte';
 	import Partner from '$lib/Components/Partner.svelte';
+	import NavigationHelper from '$lib/Components/NavigationHelper.svelte';
 
 	let { data }: { data: PageData & LayoutData } = $props();
 	const nodeId = $derived($pageStore.params.nodeId);
@@ -21,6 +22,7 @@
 </svelte:head>
 <a class="homepage_link" href="/">{`${homepage.title} >`}</a>
 <h1>{page.title}</h1>
+<NavigationHelper data={data} />
 <div>
 	<section class="intro">
 		{@html page.body.processed}

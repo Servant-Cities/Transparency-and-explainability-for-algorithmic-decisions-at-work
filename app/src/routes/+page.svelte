@@ -1,5 +1,6 @@
 <script lang="ts">
 	import DemandCard from '$lib/Components/DemandCard.svelte';
+	import NavigationHelper from '$lib/Components/NavigationHelper.svelte';
 	import type { LayoutData } from './$types';
 	let { data }: { data: LayoutData } = $props();
 	const homepage = data.processedNodes[data.homepageIndex];
@@ -17,6 +18,7 @@
 </svelte:head>
 
 <h1>{homepage.title}</h1>
+<NavigationHelper data={data} />
 <section class="intro">
 	{@html homepage.body.processed}
 </section>

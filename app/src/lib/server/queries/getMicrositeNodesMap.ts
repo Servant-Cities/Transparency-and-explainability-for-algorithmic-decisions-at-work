@@ -25,9 +25,9 @@ const getMicrositeNodesMap = async () => {
 	const { data } = await response.json();
 
 	// Match titles with nodes indexes to give pages a comprehensive URL
-	const indexesMap = {};
-	let homepageIndex;
-	let aboutPageIndex;
+	const indexesMap: Record<string, number> = {};
+	let homepageIndex: number = 0
+	let aboutPageIndex: number = 0;
 	const processedNodes = await Promise.all(data.map(async ({ id, attributes, relationships }, index) => {
 		const imageRelation = relationships.field_media;
 		let imageURL
