@@ -46,7 +46,7 @@
 	@media only screen and (max-width: 900px) {
 		section {
 			flex-direction: column;
-			& :global(div:first-child) {
+			& :global(*:first-child) {
 				width: 100%;
 				margin-right: 0;
 			}
