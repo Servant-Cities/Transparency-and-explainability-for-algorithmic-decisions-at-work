@@ -1,6 +1,6 @@
 ## Structure of the repository
 
-The repository have been separated between two folders:
+The repository has been separated between two folders:
 * Design folder: To keep track of the different design iterations and enable transfer of the project trough a Figma import
 * App folder: The actual source code of the application, respecting the strcuture of Sveltekit v2.0.0
 
