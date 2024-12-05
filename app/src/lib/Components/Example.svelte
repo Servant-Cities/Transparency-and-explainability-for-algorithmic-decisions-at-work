@@ -17,6 +17,23 @@
 		vertical-align: top;
 		margin-top: var(--spacing-4);
 		padding-bottom: calc(var(--spacing-4) * 2);
+		&:after {
+				content: " ";
+				position: absolute;
+				display: block;
+				bottom: 0;
+				left: 0;
+				height: var(--spacing-1);
+				width: 100%;
+				opacity: 0.21;
+				background-color: var(--alternative-color);
+				border-radius: var(--spacing-1);
+			}
+		&:last-child {
+			&:after {
+				content: unset;
+			}
+		}
 
 		& > :global(*:first-child) {
 			display: inline-block;

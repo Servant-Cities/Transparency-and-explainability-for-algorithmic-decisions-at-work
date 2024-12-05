@@ -30,32 +30,34 @@
 	<section class="intro">
 		{@html page.body.processed}
 	</section>
-		{#await subDemands}
-			<Loader />
-		{:then subDemands}
-			{#if subDemands?.length > 0}
-				{#each subDemands as { html }}
-					<Dropdown {html} />
-				{/each}
-			{/if}
-		{/await}
-		{#await examples}
-			<Loader />
-		{:then examples}
-			{#if examples?.length > 0 && page.examplesTitle}
+	{#await subDemands}
+		<Loader />
+	{:then subDemands}
+		{#if subDemands?.length > 0}
+			{#each subDemands as { html }}
+				<Dropdown {html} />
+			{/each}
+		{/if}
+	{/await}
+	{#await examples}
+		<Loader />
+	{:then examples}
+		{#if examples?.length > 0 && page.examplesTitle}
+			<div class="examples">
 				<h2 in:fade>{page.examplesTitle}</h2>
 				{#each examples as { html, imageURL, imageAlt }}
 					<Example {...{ html, imageURL, imageAlt }} />
 				{/each}
-			{/if}
-		{/await}
-		{#await partners}
-			<Loader />
-		{:then partners}
-			{#if page.pageType === 'About' && partners?.length > 0}
-				{#each partners as { html, title, url, imageURL, imageAlt }}
-					<Partner {...{ html, title, url, imageURL, imageAlt }} />
-				{/each}
-			{/if}
-		{/await}
+			</div>
+		{/if}
+	{/await}
+	{#await partners}
+		<Loader />
+	{:then partners}
+		{#if page.pageType === 'About' && partners?.length > 0}
+			{#each partners as { html, title, url, imageURL, imageAlt }}
+				<Partner {...{ html, title, url, imageURL, imageAlt }} />
+			{/each}
+		{/if}
+	{/await}
 </div>
