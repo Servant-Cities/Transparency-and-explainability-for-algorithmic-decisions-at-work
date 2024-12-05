@@ -1,8 +1,9 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
 	let { html, imageURL, imageAlt }: { html: string; imageURL: string; imageAlt: string } = $props();
 </script>
 
-<section>
+<section  in:fade={{ duration: 300, delay: 400 }}>
 	{@html html}
 	{#if imageURL}
 		<img alt={imageAlt} src={imageURL} />

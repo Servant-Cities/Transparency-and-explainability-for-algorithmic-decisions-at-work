@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
 	import formatTitleURL from '$lib/utils/formatTitleURL';
 
 	let {
@@ -8,7 +9,7 @@
 		$props();
 </script>
 
-<li>
+<li in:fade={{ duration: 300, delay: 400 }}>
 	<a
 		class="clickable_card"
 		href="/{formatTitleURL(demand.title)}/{demand.id}"

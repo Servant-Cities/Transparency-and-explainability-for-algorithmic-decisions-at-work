@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
 	let {
 		html,
 		title,
@@ -8,7 +9,7 @@
 	}: { html: string; title: string; url: string; imageURL: string; imageAlt: string } = $props();
 </script>
 
-<div class="partner">
+<div class="partner"  in:fade={{ duration: 300, delay: 400 }}>
 	<a href={url} target="_blank"><img src={imageURL} alt={imageAlt} /></a>
 	<div>
 		<h4><a href={url} target="_blank">{title}</a></h4>

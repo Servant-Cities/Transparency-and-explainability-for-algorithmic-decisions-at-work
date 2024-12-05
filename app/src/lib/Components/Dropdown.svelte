@@ -1,10 +1,11 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
 	let { html }: { html: string } = $props();
 	const [, title, content] = html.split(/(<h4>.*?<\/h4>)/);
 	let isOpen = $state(false);
 </script>
 
-<section class:open={isOpen}>
+<section class:open={isOpen}  in:fade={{ duration: 300, delay: 400 }}>
 	<button aria-label="Displays a detailed explaination" onclick={(e) => (isOpen = !isOpen)}>{@html title}</button>
 	<div>
 		{@html content}
