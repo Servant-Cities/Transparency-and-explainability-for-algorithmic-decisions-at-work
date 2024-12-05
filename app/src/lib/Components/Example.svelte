@@ -3,12 +3,14 @@
 	let { html, imageURL, imageAlt }: { html: string; imageURL: string; imageAlt: string } = $props();
 </script>
 
+{#if html}
 <section  in:fade={{ duration: 300, delay: 400 }}>
 	{@html html}
 	{#if imageURL}
 		<img alt={imageAlt} src={imageURL} />
 	{/if}
 </section>
+{/if}
 
 <style>
 	section {
