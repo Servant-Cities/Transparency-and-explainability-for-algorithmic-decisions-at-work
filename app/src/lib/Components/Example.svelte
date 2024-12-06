@@ -4,12 +4,16 @@
 </script>
 
 {#if html}
-<section  in:fade={{ duration: 300, delay: 400 }}>
-	{@html html}
-	{#if imageURL}
-		<img alt={imageAlt} src={imageURL} />
-	{/if}
-</section>
+	<section in:fade={{ duration: 300, delay: 400 }}>
+		{#if html.startsWith('<div>')}
+			{@html html}
+		{:else}
+			<div>{@html html}</div>
+		{/if}
+		{#if imageURL}
+			<img alt={imageAlt} src={imageURL} />
+		{/if}
+	</section>
 {/if}
 
 <style>
@@ -20,17 +24,17 @@
 		margin-top: var(--spacing-4);
 		padding-bottom: calc(var(--spacing-4) * 2);
 		&:after {
-				content: " ";
-				position: absolute;
-				display: block;
-				bottom: 0;
-				left: 0;
-				height: var(--spacing-1);
-				width: 100%;
-				opacity: 0.21;
-				background-color: var(--alternative-color);
-				border-radius: var(--spacing-1);
-			}
+			content: ' ';
+			position: absolute;
+			display: block;
+			bottom: 0;
+			left: 0;
+			height: var(--spacing-1);
+			width: 100%;
+			opacity: 0.21;
+			background-color: var(--alternative-color);
+			border-radius: var(--spacing-1);
+		}
 		&:last-child {
 			&:after {
 				content: unset;
