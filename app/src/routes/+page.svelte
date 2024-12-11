@@ -1,5 +1,6 @@
 <script lang="ts">
 	import DemandCard from '$lib/Components/DemandCard.svelte';
+	import Metatag from '$lib/Components/Metatag.svelte';
 	import NavigationHelper from '$lib/Components/NavigationHelper.svelte';
 	import type { LayoutData } from './$types';
 	let { data }: { data: LayoutData } = $props();
@@ -9,14 +10,7 @@
 	);
 </script>
 
-<svelte:head>
-	{#each homepage.metatag as { tag, attributes }}
-		{@html `<${tag} ${Object.entries(attributes)
-			.map(([key, value]) => `${key}="${value}"`)
-			.join(' ')}/>`}
-	{/each}
-</svelte:head>
-
+<Metatag metatag={homepage.metatag} />
 <h1>{homepage.title}</h1>
 <NavigationHelper data={data} />
 <section class="intro">

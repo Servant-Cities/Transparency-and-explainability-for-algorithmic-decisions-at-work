@@ -8,6 +8,7 @@
 	import Partner from '$lib/Components/Partner.svelte';
 	import NavigationHelper from '$lib/Components/NavigationHelper.svelte';
 	import Loader from '$lib/Components/Loader.svelte';
+	import Metatag from '$lib/Components/Metatag.svelte';
 
 	let { data }: { data: PageData & LayoutData } = $props();
 	const { subDemands, examples, partners } = $derived(data);
@@ -16,13 +17,7 @@
 	const homepage = data.processedNodes[data.homepageIndex];
 </script>
 
-<svelte:head>
-	{#each page.metatag as { tag, attributes }}
-		{@html `<${tag} ${Object.entries(attributes)
-			.map(([key, value]) => `${key}="${value}"`)
-			.join(' ')}/>`}
-	{/each}
-</svelte:head>
+<Metatag metatag={page.metatag} />
 <a class="homepage_link" href="/">{`${homepage.title} >`}</a>
 <h1>{page.title}</h1>
 <NavigationHelper {data} />
