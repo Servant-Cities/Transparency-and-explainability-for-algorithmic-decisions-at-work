@@ -1,16 +1,16 @@
+import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
-const {
-	DRUPAL_BASE_URL,
-	DRUPAL_JSON_API_PATH,
-} = env;
+const { DRUPAL_BASE_URL, DRUPAL_JSON_API_PATH } = env;
 
 const getExamples = async (nodeId: string) => {
-    const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/node/external_content/${nodeId}`;
-    
-    //Load examples
+	const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/node/external_content/${nodeId}`;
+
+	//Load examples
 	const examplesResponse = await fetch(`${nodeURL}/field_external_content_example_p`);
 	if (!examplesResponse.ok) {
-		throw new Error(`Examples response status: ${examplesResponse.status}`);
+		error(examplesResponse.status, {
+			message: `Examples response status: ${examplesResponse.status}`
+		});
 	}
 
 	const { data: examples } = await examplesResponse.json();
@@ -22,7 +22,9 @@ const getExamples = async (nodeId: string) => {
 			if (imageRelation?.data?.id) {
 				const imageResponse = await fetch(imageRelation.links.related.href);
 				if (!imageResponse.ok) {
-					throw new Error(`Example image response status: ${imageResponse.status}`);
+					error(imageResponse.status, {
+						message: `Example image response status: ${imageResponse.status}`
+					});
 				}
 
 				const { data: image } = await imageResponse.json();
@@ -38,6 +40,6 @@ const getExamples = async (nodeId: string) => {
 			};
 		})
 	);
-}
+};
 
 export default getExamples;

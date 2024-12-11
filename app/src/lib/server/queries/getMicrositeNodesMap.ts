@@ -1,3 +1,4 @@
+import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 const {
 	DRUPAL_BASE_URL,
@@ -20,7 +21,7 @@ const getMicrositeNodesMap = async () => {
 
 	const response = await fetch(nodesURL);
 	if (!response.ok) {
-		throw new Error(`Response status: ${response.status}`);
+		error(response.status, {message: `Response status: ${response.status}`});
 	}
 	const { data } = await response.json();
 
@@ -35,14 +36,14 @@ const getMicrositeNodesMap = async () => {
 		if (imageRelation?.data?.id) {
 			const relationResponse = await fetch(imageRelation.links.related.href);
 			if (!relationResponse.ok) {
-				throw new Error(`Demand  relation response status: ${relationResponse.status}`);
+				error(relationResponse.status,{message: `Demand  relation response status: ${relationResponse.status}`});
 			}
 
 			const { data: relation } = await relationResponse.json();
 
 			const imageResponse = await fetch(relation.relationships.field_media_image.links.related.href);
 			if (!imageResponse.ok) {
-				throw new Error(`Demand image response status: ${imageResponse.status}`);
+				error(imageResponse.status,{message: `Demand image response status: ${imageResponse.status}`});
 			}
 
 			const { data: image } = await imageResponse.json();

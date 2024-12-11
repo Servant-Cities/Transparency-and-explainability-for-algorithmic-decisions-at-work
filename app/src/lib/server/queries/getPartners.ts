@@ -1,3 +1,4 @@
+import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 const { DRUPAL_BASE_URL, DRUPAL_JSON_API_PATH } = env;
 
@@ -7,7 +8,7 @@ const getPartners = async (nodeId: string) => {
     // Load partners
 	const partnersResponse = await fetch(`${nodeURL}/field_external_content_allies`);
 	if (!partnersResponse.ok) {
-		throw new Error(`Partners response status: ${partnersResponse.status}`);
+		error(partnersResponse.status, {message: `Partners response status: ${partnersResponse.status}`});
 	}
 
 	const {data: partners} = await partnersResponse.json();
@@ -19,7 +20,7 @@ const getPartners = async (nodeId: string) => {
 			if (imageRelation?.data?.id) {
 				const imageResponse = await fetch(imageRelation.links.related.href);
 				if (!imageResponse.ok) {
-					throw new Error(`Partner image response status: ${imageResponse.status}`);
+					error(imageResponse.status, {message: `Partner image response status: ${imageResponse.status}`});
 				}
 
 				const { data: image } = await imageResponse.json();

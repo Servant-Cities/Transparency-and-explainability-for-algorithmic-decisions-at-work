@@ -1,3 +1,4 @@
+import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 
 const {
@@ -10,7 +11,7 @@ const getSubdemands = async (nodeId: string) => {
 
 	const subDemandsResponse = await fetch(`${nodeURL}/field_repeating_image_and_text`);
 	if (!subDemandsResponse.ok) {
-		throw new Error(`Subdemands response status: ${subDemandsResponse.status}`);
+		error(subDemandsResponse.status, {message:`Subdemands response status: ${subDemandsResponse.status}`});
 	}
 
 	return subDemandsResponse.json().then(({ data: subDemands }) => subDemands.map(({ attributes }) => ({

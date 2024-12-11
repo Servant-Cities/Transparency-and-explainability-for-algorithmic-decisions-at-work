@@ -25,18 +25,16 @@ const getSocials = async () => {
 		return [];
 	}
 
-	const {data} = await socialsResponse.json();
-
-	const socials = data.map(
-		({
-			attributes: {
-				title,
-				link: { uri }
-			}
-		}) => ({ title, url: uri })
+	return socialsResponse.json().then(({ data }) =>
+		data.map(
+			({
+				attributes: {
+					title,
+					link: { uri }
+				}
+			}) => ({ title, url: uri })
+		)
 	);
-
-	return socials;
 };
 
 export default getSocials;
