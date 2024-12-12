@@ -14,11 +14,9 @@
 	const { subDemands, examples, partners } = $derived(data);
 	const nodeId = $derived($pageStore.params.nodeId);
 	const page = $derived(data.processedNodes[data.indexesMap[nodeId]]);
-	const homepage = data.processedNodes[data.homepageIndex];
 </script>
 
 <Metatag metatag={page.metatag} />
-<a class="homepage_link" href="/">{`${homepage.title} >`}</a>
 <h1>{page.title}</h1>
 <NavigationHelper {data} />
 <div>
