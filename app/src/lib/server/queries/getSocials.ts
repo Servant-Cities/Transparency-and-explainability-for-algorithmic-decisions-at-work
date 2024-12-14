@@ -1,3 +1,4 @@
+import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 const {
 	DRUPAL_BASE_URL,
@@ -21,8 +22,7 @@ const getSocials = async () => {
 
 	const socialsResponse = await fetch(socialsURL, { method: 'GET', redirect: 'follow', headers });
 	if (!socialsResponse.ok) {
-		console.warn(`Socials response status: ${socialsResponse.status}`);
-		return [];
+		error(socialsResponse.status, {message: `Socials response status: ${socialsResponse.status}`});
 	}
 
 	return socialsResponse.json().then(({ data }) =>

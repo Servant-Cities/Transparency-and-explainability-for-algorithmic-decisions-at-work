@@ -15,9 +15,9 @@ const getExamples = async (nodeId: string) => {
 
 	const { data: examples } = await examplesResponse.json();
 
-	//Load examples images information
 	return Promise.all(
 		examples.map(async (example) => {
+			//Load examples images information
 			const imageRelation = example.relationships.field_fieldset_image;
 			if (imageRelation?.data?.id) {
 				const imageResponse = await fetch(imageRelation.links.related.href);
