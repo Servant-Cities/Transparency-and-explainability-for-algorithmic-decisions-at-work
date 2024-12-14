@@ -46,7 +46,7 @@
 }
 
 body {
- 	overflow-x: hidden;
+	overflow-x: hidden;
 }
 
 main {
@@ -56,9 +56,30 @@ main {
 	padding: 0 var(--spacing-4) var(--spacing-4);
 }
 
-.homepage_link {
+.button {
 	display: block;
-	margin-bottom: var(--spacing-4);
+	width: fit-content;
+	padding: var(--spacing-2) var(--spacing-3);
+	margin: var(--spacing-4) auto;
+	border-radius: var(--spacing-3);
+	background: var(--alternative-color);
+	background: linear-gradient(270deg, var(--alternative-color) 20%, var(--secondary-color) 100%);
+	background-size: 100% 100%;
+	font-family: var(--font-family);
+	font-size: var(--font-size-3);
+	font-weight: 300;
+	color: var(--main-color);
+	text-decoration: none;
+	transition: ease-in-out .3s;
+
+	&:hover {
+		text-decoration: none;
+		padding: var(--spacing-2) var(--spacing-4);
+		background-position: right;
+		background-size: 500% 100%;
+		letter-spacing: 1px;
+		box-shadow: 0 0 1px 1.5px var(--secondary-color);
+	}
 }
 
 .intro {
@@ -70,9 +91,9 @@ main {
 	position: relative;
 	height: auto;
 
-	&:before{
+	&:before {
 		position: absolute;
-		content: " ";
+		content: ' ';
 		display: block;
 		width: 200vw;
 		height: calc(100% - var(--spacing-4));
@@ -125,6 +146,8 @@ li {
 	font-weight: 300;
 	color: var(--main-color);
 	padding-bottom: var(--spacing-2);
+	position: relative;
+	width: 100%;
 
 	& > a {
 		text-underline-offset: 3px;
