@@ -5,14 +5,14 @@
 	let {
 		demand,
 		number
-	}: { demand: { title: string; id: string; imageURL: string; imageAlt: string }; number: number } =
+	}: { demand: { title: string; shortTitle: string; id: string; imageURL: string; imageAlt: string }; number: number } =
 		$props();
 </script>
 
 <li in:fade={{ duration: 300, delay: 400 }}>
 	<a
 		class="clickable_card"
-		href="/{formatTitleURL(demand.title)}/{demand.id}"
+		href="/{formatTitleURL(demand.shortTitle)}/{demand.id}"
 		aria-label="Learn more about this demand"
 	>
 		<div>

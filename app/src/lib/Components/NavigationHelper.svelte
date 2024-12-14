@@ -23,9 +23,9 @@
 <nav class:scrolled={y > 60} class:opened {ontouchstart}>
 	<ul>
 		<li><a class:active={!nodeId} href="/">Homepage</a></li>
-		{#each demands as { title, id, shortTitle }, index}
+		{#each demands as { id, shortTitle }, index}
 			<li>
-				<a class:active={nodeId === id} href={`/${formatTitleURL(title)}/${id}`}
+				<a class:active={nodeId === id} href={`/${formatTitleURL(shortTitle)}/${id}`}
 					>{index + 1}. {shortTitle}</a
 				>
 			</li>
