@@ -10,7 +10,7 @@
 	);
 </script>
 
-<Metatag metatag={homepage.metatag} />
+<Metatag metatag={homepage.metatag} title={homepage.title}/>
 <h1>{homepage.title}</h1>
 <NavigationHelper data={data} />
 <section class="intro">

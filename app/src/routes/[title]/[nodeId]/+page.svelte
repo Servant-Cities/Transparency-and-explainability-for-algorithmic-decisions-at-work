@@ -16,7 +16,7 @@
 	const page = $derived(data.processedNodes[data.indexesMap[nodeId]]);
 </script>
 
-<Metatag metatag={page.metatag} />
+<Metatag metatag={page.metatag} title={page.title}/>
 <h1>{page.title}</h1>
 <NavigationHelper {data} />
 <div>
