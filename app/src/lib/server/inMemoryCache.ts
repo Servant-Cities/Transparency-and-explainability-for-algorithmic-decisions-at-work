@@ -1,10 +1,10 @@
 const memoryCache: Record<string, any> = {};
 
-const inMemoryCache = async (query: (args: any) => any, args?: any) => {
-	const key = `${query.name}(${args ?? JSON.stringify(args)})`;
+const inMemoryCache = async (query: (args: any) => any, nodeId?: string) => {
+	const key = `${query.name}(${nodeId ? nodeId : ''})`;
 
 	const handler = new Promise((resolve, reject) =>
-		query(args)
+		query(nodeId)
 			.then((result: any) => {
 				memoryCache[key] = result;
 				resolve(result);
