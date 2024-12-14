@@ -14,7 +14,6 @@ const inMemoryCache = async (query: (args: any) => any, nodeId?: string) => {
 			})
 	);
 
-	console.log(memoryCache);
 	return handler;
 };
 
