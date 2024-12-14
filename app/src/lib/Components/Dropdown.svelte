@@ -27,13 +27,11 @@
 			padding-left: calc(var(--headers-size-2) + var(--spacing-2));
 
 			&::before {
-			content: 'i';
+			content: '>';
 			display: inline-block;
 			position: absolute;
 			left: 0;
 			top: calc(var(--headers-size-2) - var(--headers-size-1));
-			border-radius: 50%;
-			border: 1px solid var(--main-color);
 			width: var(--headers-size-2);
 			height: var(--headers-size-2);
 			text-align: center;
