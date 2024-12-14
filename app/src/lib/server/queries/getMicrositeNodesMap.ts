@@ -25,7 +25,6 @@ const getMicrositeNodesMap = async () => {
 	}
 	const { data } = await response.json();
 
-	// Match titles with nodes indexes to give pages a comprehensive URL
 	const indexesMap: Record<string, number> = {};
 	let homepageIndex: number = 0
 	let aboutPageIndex: number = 0;
@@ -68,8 +67,10 @@ const getMicrositeNodesMap = async () => {
 		switch (processedNode.pageType) {
 			case 'Homepage':
 				homepageIndex = index;
+				break
 			case 'About':
 				aboutPageIndex = index;
+				break
 			case 'Demand':
 				break;
 			default:

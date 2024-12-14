@@ -1,3 +1,6 @@
-const formatTitleURL = (title: string) => title.replace(/\/| |\?|,/g, '-');
+const formatTitleURL = (title: string) => {
+	console.log(title);
+	return title.replace(/\/| |\?|,/g, '-');
+};
 
 export default formatTitleURL;
