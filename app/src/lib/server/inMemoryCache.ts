@@ -1,11 +1,14 @@
 const memoryCache: Record<string, any> = {};
 
-const inMemoryCache = async (query: (args: any) => any, nodeId?: string) => {
-	const key = `${query.name}(${nodeId ? nodeId : ''})`;
+export default async function inMemoryCache<Params, Return>(
+	query: (args?: Params) => Promise<Return>,
+	params?: Params
+): Promise<Return> {
+	const key = `${query.name}(${params ? params : ''})`;
 
-	const handler = new Promise((resolve, reject) =>
-		query(nodeId)
-			.then((result: any) => {
+	const handler: Promise<Return> = new Promise((resolve, reject) =>
+		query(params)
+			.then((result: Return) => {
 				memoryCache[key] = result;
 				resolve(result);
 			})
@@ -15,6 +18,4 @@ const inMemoryCache = async (query: (args: any) => any, nodeId?: string) => {
 	);
 
 	return handler;
-};
-
-export default inMemoryCache;
+}
