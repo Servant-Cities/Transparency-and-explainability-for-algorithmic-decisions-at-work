@@ -57,7 +57,7 @@
 		}
 
 		&::before {
-			content: '☓';
+			content: '⛌';
 			display: inline-block;
 			position: absolute;
 			top: var(--spacing-4);

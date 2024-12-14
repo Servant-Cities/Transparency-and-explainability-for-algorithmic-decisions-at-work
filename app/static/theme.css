@@ -70,7 +70,7 @@ main {
 	font-weight: 300;
 	color: var(--main-color);
 	text-decoration: none;
-	transition: ease-in-out .3s;
+	transition: ease-in-out 0.3s;
 
 	&:hover {
 		text-decoration: none;
@@ -179,4 +179,10 @@ button {
 	cursor: pointer;
 	border: none;
 	text-align: left;
+}
+
+@media only screen and (max-width: 900px) {
+	h1 {
+		max-width: calc(100% - var(--spacing-4));
+	}
 }
