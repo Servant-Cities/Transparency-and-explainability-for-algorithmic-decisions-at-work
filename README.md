@@ -28,6 +28,7 @@ Please make sure the OS supports the following softwares, they are installed and
 * [git](https://git-scm.com/)
 * [nodejs v20 or 18](https://nodejs.org)
 * [yarn](https://yarnpkg.com/)
+* [pm2](https://pm2.keymetrics.io/docs/usage/quick-start/)
 * a text editor (like vi or nano)
 
 Also make sure the port 3000 is availble and open for http connections.
