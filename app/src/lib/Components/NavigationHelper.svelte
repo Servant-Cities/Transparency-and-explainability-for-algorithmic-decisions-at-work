@@ -23,10 +23,10 @@
 <nav class:scrolled={y > 60} class:opened {ontouchstart}>
 	<ul>
 		<li><a class:active={!nodeId} href="/">Homepage</a></li>
-		{#each demands as { title, id }, index}
+		{#each demands as { title, id, shortTitle }, index}
 			<li>
 				<a class:active={nodeId === id} href={`/${formatTitleURL(title)}/${id}`}
-					>Demand {index + 1}</a
+					>{index + 1}. {shortTitle}</a
 				>
 			</li>
 		{/each}
@@ -55,7 +55,6 @@
 	.scrolled {
 		max-width: var(--spacing-4);
 		max-height: var(--spacing-4);
-		cursor: zoom-in;
 		padding: unset;
 		padding-top: var(--spacing-4);
 		&::after {
@@ -113,7 +112,6 @@
 		nav, .scrolled {
 			max-width: var(--spacing-4);
 			max-height: var(--spacing-4);
-			cursor: zoom-in;
 			padding: unset;
 			padding-top: var(--spacing-4);
 			&::after {

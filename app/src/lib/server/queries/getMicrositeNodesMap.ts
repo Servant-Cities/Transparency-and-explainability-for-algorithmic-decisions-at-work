@@ -56,6 +56,7 @@ const getMicrositeNodesMap = async () => {
 			id,
 			pageType:
 				pageTypes[relationships.field_microsite_page_type.data.meta.drupal_internal__target_id],
+			shortTitle: attributes.field_short_title_menu,
 			body: attributes.body,
 			title: attributes.title,
 			metatag: attributes.metatag,
