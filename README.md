@@ -22,7 +22,12 @@ yarn dev
 ## Staging
 If you want to run a non optimized node app which you can use to dynamicaly test the content edited in Drupal, simply edit the .env file and run the app as you would locally.
 
-> An optimized node app was previously possible but we decided to support static site generation for production instead in order for the app to be self sufficient and easier to manage. Should you prefer the previous mode, you can revert the 5 commits mentionning "static site generation" and go back to a dynamic production architecture instead, this documentation will be updated to reflect the changes.
+If you want to do so using pm2, here is how to do it:
+```
+pm2 start ecosystem.config.cjs
+```
+
+> An optimized node app was previously possible but we decided to support static site generation for production instead in order for the app to be self sufficient and easier to manage. Should you prefer the previous mode, you can revert the 6 commits mentionning "static site generation" and go back to a dynamic production architecture instead, this documentation will be updated to reflect the changes.
 
 ## Deploy the app on a VM
 
