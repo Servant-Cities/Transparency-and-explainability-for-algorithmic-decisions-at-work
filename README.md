@@ -19,6 +19,10 @@ yarn dev
 
 3. The dev server runs on port 5173 and will automaticaly update the page upon modifying the source code.
 
+## Staging
+If you want to run a non optimized node app which you can use to dynamicaly test the content edited in Drupal, simply edit the .env file and run the app as you would locally.
+
+> An optimized node app was previously possible but we decided to support static site generation for production instead in order for the app to be self sufficient and easier to manage. Should you prefer the previous mode, you can revert the 5 commits mentionning "static site generation" and go back to a dynamic production architecture instead, this documentation will be updated to reflect the changes.
 
 ## Deploy the app on a VM
 
@@ -26,12 +30,9 @@ yarn dev
 
 Please make sure the OS supports the following softwares, they are installed and executable globally.
 * [git](https://git-scm.com/)
-* [nodejs v20 or 18](https://nodejs.org)
+* [nodejs 18 or more](https://nodejs.org)
 * [yarn](https://yarnpkg.com/)
-* [pm2](https://pm2.keymetrics.io/docs/usage/quick-start/)
 * a text editor (like vi or nano)
-
-Also make sure the port 3000 is availble and open for http connections.
 
 ### Load the source code
 ```
@@ -52,55 +53,11 @@ yarn
 yarn build
 ```
 
-### Run the app
-1. Make sure you are in the app folder and have successfully ran the previous commands
-
-
-2. Run this command to start the app and make it accessible on port 3000
-Using nodejs v20
-```
-node --env-file=.env build
-```
-
-Alternatively using nodejs v18
-```
-export $(grep -v '^#' .env | xargs) && node build
-```
-
-
 ### Setup for production
-1. Use the following command to manage the app with pm2 with a name specific to the microsite you want to run.
-```
-export $(grep -v '^#' .env | xargs) && pm2 start build/index.js -n name-of-the-microsite
-```
-
-Alternatively, you can [adapt these values to your ecosystem file](https://pm2.keymetrics.io/docs/usage/environment/), feel free to change the PORT variable in case you run multiple microsites on the same server. 
-You only need one build folder per campaign organizer but be aware than the "PUBLIC_CAMPAIGN_ORGANIZER_URL" is staticaly defined in it.
-```
-{
-        name: "name-of-the-microsite",
-        script: "absolute-path-to-build/index.js",
-        watch: true,
-        instance_var: 'INSTANCE_ID',
-        env: {
-            PORT: "3000",
-            ...copy your .env variables here
-        }
-      }
-```
-
-2. You should also set up a reverse proxy of your choice to apply SSL certificates and forward requests for the domain allocated to the app. ([Example with Nginx](https://www.baeldung.com/nginx-forward-proxy))
-
+You should set up a reverse proxy of your choice to apply SSL certificates and serve the index.html file located in the newly created "build" folder. make sure all the folder is served or some important ressources might be missing.
 
 ### Clean behind
-Only the following files are required to run the app:
-* .env file 
-* build folder
-
-You can delete all the rest (be aware this might cause conflicts if you want to update the app using git pull instead of cloning the app again)
-
-
-
+Only the build folder is required to run the app, the rest of the source code can be deleted and the .env file use to build the app can be deleted or stored somewhere else for future updates.
 
 
 
