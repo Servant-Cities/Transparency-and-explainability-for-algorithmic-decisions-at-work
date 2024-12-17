@@ -5,12 +5,8 @@ import {
 	DRUPAL_MICROSITE_UUID,
 	HOME_PAGE_TYPE_ID,
 	DEMAND_TYPE_ID,
-	ABOUT_PAGE_TYPE_ID,
+	ABOUT_PAGE_TYPE_ID
 } from '$env/static/private';
-import {
-	PUBLIC_BASE_URL
-} from '$env/static/public';
-import formatTitleURL from '$lib/utils/formatTitleURL';
 
 const pageTypes = {
 	[HOME_PAGE_TYPE_ID]: 'Homepage',
@@ -18,7 +14,19 @@ const pageTypes = {
 	[ABOUT_PAGE_TYPE_ID]: 'About'
 };
 
-const getSitemapFile = async (): Promise<string> => {
+interface NodeSummary extends Record<string, string> {
+	id: string;
+	pageType: string;
+	title: string;
+	shortTitle: string;
+	lastModified: string;
+}
+
+const getSitemapFile = async (): Promise<{
+	homepage: NodeSummary;
+	demands: Array<NodeSummary>;
+	aboutPage: NodeSummary;
+}> => {
 	// Get the nodes associated to this microsite
 	const nodesURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/node/external_content?filter[field_microsite.id]=${DRUPAL_MICROSITE_UUID}`;
 
@@ -28,9 +36,9 @@ const getSitemapFile = async (): Promise<string> => {
 	}
 	const { data } = await response.json();
 
-	let homepage,
-		demands = [],
-		aboutPage;
+	let homepage: NodeSummary,
+		demands: Array<NodeSummary> = [],
+		aboutPage: NodeSummary;
 
 	data.forEach(({ id, attributes, relationships }) => {
 		const processedNode = {
@@ -44,10 +52,10 @@ const getSitemapFile = async (): Promise<string> => {
 		switch (processedNode.pageType) {
 			case 'Homepage':
 				homepage = processedNode;
-				break
+				break;
 			case 'About':
 				aboutPage = processedNode;
-				break
+				break;
 			case 'Demand':
 				demands.push(processedNode);
 				break;
@@ -58,33 +66,7 @@ const getSitemapFile = async (): Promise<string> => {
 		}
 	});
 
-	return `
-		<?xml version="1.0" encoding="UTF-8" ?>
-		<urlset
-			xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
-		>
-			<url>
-				<loc>${PUBLIC_BASE_URL}/</loc>
-				<lastmod>${homepage.lastModified}</lastmod>
-				<changefreq>daily</changefreq>
-				<priority>0.7</priority>
-			</url>
-			${demands.map(
-				({ shortTitle, id, lastModified }) => `
-				<url>
-					<loc>${PUBLIC_BASE_URL}/${formatTitleURL(shortTitle)}/${id}</loc>
-					<lastmod>${lastModified}</lastmod>
-					<changefreq>daily</changefreq>
-					<priority>1</priority>
-				</url>`
-			).join('')}
-			<url>
-				<loc>${PUBLIC_BASE_URL}/${formatTitleURL(aboutPage.title)}/${aboutPage.id}</loc>
-				<lastmod>${aboutPage.lastModified}</lastmod>
-				<changefreq>daily</changefreq>
-				<priority>0.3</priority>
-			</url>
-		</urlset>`;
+	return { homepage, demands, aboutPage };
 };
 
 export default getSitemapFile;
