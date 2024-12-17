@@ -1,12 +1,11 @@
 import { error } from '@sveltejs/kit';
-import { env } from '$env/dynamic/private';
-const {
+import {
 	DRUPAL_BASE_URL,
 	DRUPAL_JSON_API_PATH,
 	DRUPAL_JSON_API_USERNAME,
 	DRUPAL_JSON_API_PASSWORD,
 	DRUPAL_SOCIALS_MENU_NAME
-} = env;
+} from '$env/static/private';
 
 const getSocials = async () => {
 	const socialsURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/menu_link_content/menu_link_content?filter[menu_name]=${DRUPAL_SOCIALS_MENU_NAME}`;
