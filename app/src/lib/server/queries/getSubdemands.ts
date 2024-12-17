@@ -1,10 +1,8 @@
 import { error } from '@sveltejs/kit';
-import { env } from '$env/dynamic/private';
-
-const {
+import {
 	DRUPAL_BASE_URL,
 	DRUPAL_JSON_API_PATH,
-} = env;
+} from '$env/static/private';
 
 const getSubdemands = async (nodeId: string) => {
 	const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/node/external_content/${nodeId}`;

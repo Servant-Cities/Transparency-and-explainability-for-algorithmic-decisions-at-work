@@ -1,16 +1,16 @@
 import { error } from '@sveltejs/kit';
-import { base } from '$app/paths';
-import { env } from '$env/dynamic/private';
-import formatTitleURL from '$lib/utils/formatTitleURL';
-
-const {
+import {
 	DRUPAL_BASE_URL,
 	DRUPAL_JSON_API_PATH,
 	DRUPAL_MICROSITE_UUID,
 	HOME_PAGE_TYPE_ID,
 	DEMAND_TYPE_ID,
-	ABOUT_PAGE_TYPE_ID
-} = env;
+	ABOUT_PAGE_TYPE_ID,
+} from '$env/static/private';
+import {
+	PUBLIC_BASE_URL
+} from '$env/static/public';
+import formatTitleURL from '$lib/utils/formatTitleURL';
 
 const pageTypes = {
 	[HOME_PAGE_TYPE_ID]: 'Homepage',
@@ -64,7 +64,7 @@ const getSitemapFile = async (): Promise<string> => {
 			xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
 		>
 			<url>
-				<loc>${base}/</loc>
+				<loc>${PUBLIC_BASE_URL}/</loc>
 				<lastmod>${homepage.lastModified}</lastmod>
 				<changefreq>daily</changefreq>
 				<priority>0.7</priority>
@@ -72,14 +72,14 @@ const getSitemapFile = async (): Promise<string> => {
 			${demands.map(
 				({ shortTitle, id, lastModified }) => `
 				<url>
-					<loc>${base}/${formatTitleURL(shortTitle)}/${id}</loc>
+					<loc>${PUBLIC_BASE_URL}/${formatTitleURL(shortTitle)}/${id}</loc>
 					<lastmod>${lastModified}</lastmod>
 					<changefreq>daily</changefreq>
 					<priority>1</priority>
 				</url>`
 			).join('')}
 			<url>
-				<loc>${base}/${formatTitleURL(aboutPage.title)}/${aboutPage.id}</loc>
+				<loc>${PUBLIC_BASE_URL}/${formatTitleURL(aboutPage.title)}/${aboutPage.id}</loc>
 				<lastmod>${aboutPage.lastModified}</lastmod>
 				<changefreq>daily</changefreq>
 				<priority>0.3</priority>

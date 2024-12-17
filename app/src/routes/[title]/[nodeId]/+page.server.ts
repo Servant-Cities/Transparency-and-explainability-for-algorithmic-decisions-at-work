@@ -1,12 +1,10 @@
-import { env } from '$env/dynamic/private';
+import { CACHE_CONTROL_TIME } from '$env/static/private';
 import type { PageServerLoad } from '../$types';
 
 import getExamples from '$lib/server/queries/getExamples';
 import getPartners from '$lib/server/queries/getPartners';
 import getSubdemands from '$lib/server/queries/getSubdemands';
 import inMemoryCache from '$lib/server/inMemoryCache';
-
-const { CACHE_CONTROL_TIME } = env;
 
 export const load: PageServerLoad = async ({ params, setHeaders }) => {
 	setHeaders({
