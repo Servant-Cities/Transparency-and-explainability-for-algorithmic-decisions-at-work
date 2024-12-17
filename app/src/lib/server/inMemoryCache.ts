@@ -18,7 +18,7 @@ const getPersistedCache = () => {
 const memoryCache: Record<string, any> = getPersistedCache();
 
 export default async function inMemoryCache<Params, Return>(
-	query: (args?: Params) => Promise<Return>,
+	query: (params?: Params) => Promise<Return>,
 	params?: Params
 ): Promise<Return> {
 	const key = `${query.name}(${params ? params : ''})`;

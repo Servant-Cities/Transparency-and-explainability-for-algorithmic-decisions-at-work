@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { DRUPAL_BASE_URL, DRUPAL_JSON_API_PATH } from '$env/static/private';
 
-const getExamples = async (nodeId: string) => {
+const getExamples = async ({ nodeId }: { nodeId: string }) => {
 	const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/node/external_content/${nodeId}`;
 
 	//Load examples
