@@ -1,8 +1,9 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { page } from '$app/stores';
+	import { base } from '$app/paths';
 	import type { LayoutData } from './$types';
-	import { PUBLIC_CAMPAIGN_ORGANIZER_URL, PUBLIC_BASE_URL } from '$env/static/public';
+	import { PUBLIC_CAMPAIGN_ORGANIZER_URL } from '$env/static/public';
 	import formatTitleURL from '$lib/utils/formatTitleURL';
 	let { children, data }: { children: Snippet; data: LayoutData } = $props();
 	const aboutPage = data.processedNodes[data.aboutPageIndex];
@@ -15,19 +16,19 @@
 		{#if aboutPage.id !== nodeId}<section class="about">
 				<h3>{aboutPage.title}</h3>
 				{@html aboutPage.body.processed}
-				<a class="about_link" href={`${PUBLIC_BASE_URL}/${formatTitleURL(aboutPage.title)}/${aboutPage.id}`}
+				<a class="about_link" href={`${base}/${formatTitleURL(aboutPage.title)}/${aboutPage.id}`}
 					>Learn more ↗</a
 				>
 			</section>{/if}
 	</main>
 	<footer>
 		<a href={PUBLIC_CAMPAIGN_ORGANIZER_URL} target="_blank">
-			<img alt="Privacy international's logo" src="/logo.png" />
+			<img alt="Privacy international's logo" src="{base}/logo.png" />
 		</a>
 		<div>
 			{#each data.socials as { title, url }}
 				<a href={url} target="_blank" aria-label={title} class="social_link">
-					<img src={`/socials/${title}.svg`} alt={title} />
+					<img src={`${base}/socials/${title}.svg`} alt={title} />
 				</a>
 			{/each}
 		</div>
