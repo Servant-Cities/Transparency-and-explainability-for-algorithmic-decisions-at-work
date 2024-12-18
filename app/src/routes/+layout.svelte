@@ -42,25 +42,12 @@
 		margin: 0 auto;
 		padding: calc(var(--spacing-4) * 2);
 		padding-top: calc(var(--spacing-4) + var(--spacing-3));
-		padding-bottom: calc(var(--spacing-4) + (2 * var(--spacing-3)));
+		padding-bottom: calc(var(--spacing-4) + (2 * var(--spacing-1)));
 	}
 	.about {
 		position: relative;
 		width: 100%;
-		padding: var(--spacing-4);
-		margin-top: var(--spacing-4);
-		&::before {
-			content: '';
-			position: absolute;
-			left: 0;
-			top: 0;
-			display: block;
-			width: 100%;
-			height: 100%;
-			opacity: 0.15;
-			background-color: var(--alternative-color);
-			border-radius: var(--spacing-3);
-		}
+		padding: var(--spacing-4) 0;
 	}
 	.about_link {
 		display: block;
@@ -99,14 +86,14 @@
 	@media only screen and (max-width: 940px) {
 		.wrapper {
 			padding: var(--spacing-4);
-			padding-bottom: calc(var(--spacing-4) + (2 * var(--spacing-3)));
+			padding-bottom: calc(var(--spacing-4) + (2 * var(--spacing-1)));
 		}
 	}
 
 	@media only screen and (max-width: 640px) {
 		.wrapper {
 			padding: var(--spacing-3);
-			padding-bottom: calc(var(--spacing-4) + (2 * var(--spacing-3)));
+			padding-bottom: calc(var(--spacing-4) + (2 * var(--spacing-1)));
 		}
 	}
 </style>
