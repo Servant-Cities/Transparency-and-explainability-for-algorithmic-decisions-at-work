@@ -1,4 +1,5 @@
 import { error } from '@sveltejs/kit';
+import { base } from '$app/paths';
 import { env } from '$env/dynamic/private';
 import formatTitleURL from '$lib/utils/formatTitleURL';
 
@@ -63,7 +64,7 @@ const getSitemapFile = async (): Promise<string> => {
 			xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
 		>
 			<url>
-				<loc>/</loc>
+				<loc>${base}/</loc>
 				<lastmod>${homepage.lastModified}</lastmod>
 				<changefreq>daily</changefreq>
 				<priority>0.7</priority>
@@ -71,14 +72,14 @@ const getSitemapFile = async (): Promise<string> => {
 			${demands.map(
 				({ shortTitle, id, lastModified }) => `
 				<url>
-					<loc>/${formatTitleURL(shortTitle)}/${id}</loc>
+					<loc>${base}/${formatTitleURL(shortTitle)}/${id}</loc>
 					<lastmod>${lastModified}</lastmod>
 					<changefreq>daily</changefreq>
 					<priority>1</priority>
 				</url>`
 			).join('')}
 			<url>
-				<loc>/${formatTitleURL(aboutPage.title)}/${aboutPage.id}</loc>
+				<loc>${base}/${formatTitleURL(aboutPage.title)}/${aboutPage.id}</loc>
 				<lastmod>${aboutPage.lastModified}</lastmod>
 				<changefreq>daily</changefreq>
 				<priority>0.3</priority>
