@@ -33,7 +33,7 @@ export default async function inMemoryCache<Params, Return>(
 // Persists cache every (PERSIST_CACHE_TIME) milliseconds
 setInterval(
 	() => {
-		fs.writeFile('CACHE_FILE_PATH', JSON.stringify(memoryCache), (err) => {
+		fs.writeFile(CACHE_FILE_PATH, JSON.stringify(memoryCache), (err) => {
 			if (err) {
 				console.warn('The following errors happened while trying to write the cache: ', err);
 			} else {
