@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page as pageStore } from '$app/stores';
-	import { PUBLIC_BASE_URL } from '$env/static/public';
+	import { base } from '$app/paths';
 	import type { LayoutData } from '../../routes/$types';
 	import formatTitleURL from '$lib/utils/formatTitleURL';
 
@@ -23,10 +23,10 @@
 <svelte:window bind:scrollY={y} />
 <nav class:scrolled={y > 60} class:opened {ontouchstart}>
 	<ul>
-		<li><a class:active={!nodeId} href="{PUBLIC_BASE_URL}/">Homepage</a></li>
+		<li><a class:active={!nodeId} href="{base}/">Homepage</a></li>
 		{#each demands as { id, shortTitle }, index}
 			<li>
-				<a class:active={nodeId === id} href={`${PUBLIC_BASE_URL}/${formatTitleURL(shortTitle)}/${id}`}
+				<a class:active={nodeId === id} href={`${base}/${formatTitleURL(shortTitle)}/${id}`}
 					>{index + 1}. {shortTitle}</a
 				>
 			</li>
@@ -34,7 +34,7 @@
 		<li>
 			<a
 				class:active={nodeId === aboutPage.id}
-				href={`${PUBLIC_BASE_URL}/${formatTitleURL(aboutPage.title)}/${aboutPage.id}`}>{aboutPage.title}</a
+				href={`${base}/${formatTitleURL(aboutPage.title)}/${aboutPage.id}`}>{aboutPage.title}</a
 			>
 		</li>
 	</ul>

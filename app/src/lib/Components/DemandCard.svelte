@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import { PUBLIC_BASE_URL } from '$env/static/public';
+	import { base } from '$app/paths';
 	import formatTitleURL from '$lib/utils/formatTitleURL';
 
 	let {
@@ -13,7 +13,7 @@
 <li in:fade={{ duration: 300, delay: 400 }}>
 	<a
 		class="clickable_card"
-		href="{PUBLIC_BASE_URL}/{formatTitleURL(demand.shortTitle)}/{demand.id}"
+		href="{base}/{formatTitleURL(demand.shortTitle)}/{demand.id}"
 		aria-label="Learn more about this demand"
 	>
 		<div>
