@@ -67,7 +67,7 @@ main {
 	background-size: 100% 100%;
 	font-family: var(--font-family);
 	font-size: var(--font-size-3);
-	font-weight: 300;
+	font-weight: 700;
 	color: var(--main-color);
 	text-decoration: none;
 	transition: ease-in-out 0.3s;

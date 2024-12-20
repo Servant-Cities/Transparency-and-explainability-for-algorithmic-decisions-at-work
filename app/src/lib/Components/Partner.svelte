@@ -25,6 +25,10 @@
 		margin-top: var(--spacing-4);
 		max-width: 900px;
 
+		&:last-child {
+			margin-bottom: var(--spacing-4);
+		}
+
 		& > div {
 			display: inline-block;
 			width: calc(100% - var(--spacing-2) - 190px);
