@@ -4,8 +4,15 @@ const { PERSIST_CACHE_TIME = '21600000' } = env;
 const CACHE_FILE_PATH = './cache.json';
 
 const getPersistedCache = () => {
-	const json = fs.readFileSync(CACHE_FILE_PATH, 'utf8');
-	return JSON.parse(json);
+	try {
+		const json = fs.readFileSync(CACHE_FILE_PATH, 'utf8');
+		return JSON.parse(json);
+	} catch (err) {
+		if (err.code === 'ENOENT') {
+			console.log('Cache file not found, the service will create a file');
+		}
+		return {};
+	}
 };
 
 const memoryCache: Record<string, any> = getPersistedCache();
