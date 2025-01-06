@@ -1,16 +1,14 @@
 import { error } from '@sveltejs/kit';
 import { base } from '$app/paths';
-import { env } from '$env/dynamic/private';
-import formatTitleURL from '$lib/utils/formatTitleURL';
-
-const {
+import{
 	DRUPAL_BASE_URL,
 	DRUPAL_JSON_API_PATH,
 	DRUPAL_MICROSITE_UUID,
 	HOME_PAGE_TYPE_ID,
 	DEMAND_TYPE_ID,
 	ABOUT_PAGE_TYPE_ID
-} = env;
+} from '$env/static/private';
+import formatTitleURL from '$lib/utils/formatTitleURL';
 
 const pageTypes = {
 	[HOME_PAGE_TYPE_ID]: 'Homepage',

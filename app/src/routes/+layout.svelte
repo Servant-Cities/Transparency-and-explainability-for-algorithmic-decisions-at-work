@@ -5,6 +5,9 @@
 	import type { LayoutData } from './$types';
 	import { PUBLIC_CAMPAIGN_ORGANIZER_URL } from '$env/static/public';
 	import formatTitleURL from '$lib/utils/formatTitleURL';
+
+	const usesStaticRoute = true;
+
 	let { children, data }: { children: Snippet; data: LayoutData } = $props();
 	const aboutPage = data.processedNodes[data.aboutPageIndex];
 	const nodeId = $derived($page.params?.nodeId);
@@ -16,7 +19,7 @@
 		{#if aboutPage.id !== nodeId}<section class="about">
 				<h3>{aboutPage.title}</h3>
 				{@html aboutPage.body.processed}
-				<a class="about_link" href={`${base}/${formatTitleURL(aboutPage.title)}/${aboutPage.id}`}
+				<a class="about_link" href={`${base}/${formatTitleURL(aboutPage.title)}/${aboutPage.id}${usesStaticRoute ? '.html' : ''}`}
 					>Learn more ↗</a
 				>
 			</section>{/if}

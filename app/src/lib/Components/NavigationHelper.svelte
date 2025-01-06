@@ -4,6 +4,8 @@
 	import type { LayoutData } from '../../routes/$types';
 	import formatTitleURL from '$lib/utils/formatTitleURL';
 
+	const usesStaticRoute = true;
+
 	let { data }: { data: LayoutData } = $props();
 	const nodeId = $derived($pageStore.params.nodeId);
 
@@ -18,6 +20,7 @@
 	const ontouchstart = () => {
 		opened = !opened;
 	};
+	
 </script>
 
 <svelte:window bind:scrollY={y} />
@@ -26,7 +29,7 @@
 		<li><a class:active={!nodeId} href="{base}/">Homepage</a></li>
 		{#each demands as { id, shortTitle }, index}
 			<li>
-				<a class:active={nodeId === id} href={`${base}/${formatTitleURL(shortTitle)}/${id}`}
+				<a class:active={nodeId === id} href={`${base}/${formatTitleURL(shortTitle)}/${id}${usesStaticRoute ? '.html' : ''}`}
 					>{index + 1}. {shortTitle}</a
 				>
 			</li>
@@ -34,7 +37,7 @@
 		<li>
 			<a
 				class:active={nodeId === aboutPage.id}
-				href={`${base}/${formatTitleURL(aboutPage.title)}/${aboutPage.id}`}>{aboutPage.title}</a
+				href={`${base}/${formatTitleURL(aboutPage.title)}/${aboutPage.id}${usesStaticRoute ? '.html' : ''}`}>{aboutPage.title}</a
 			>
 		</li>
 	</ul>

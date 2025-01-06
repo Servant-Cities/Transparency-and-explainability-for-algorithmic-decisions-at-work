@@ -3,6 +3,8 @@
 	import { base } from '$app/paths';
 	import formatTitleURL from '$lib/utils/formatTitleURL';
 
+	const usesStaticRoute = true;
+
 	let {
 		demand,
 		number
@@ -13,7 +15,7 @@
 <li in:fade={{ duration: 300, delay: 400 }}>
 	<a
 		class="clickable_card"
-		href="{base}/{formatTitleURL(demand.shortTitle)}/{demand.id}"
+		href="{base}/{formatTitleURL(demand.shortTitle)}/{demand.id}{usesStaticRoute ? '.html' : ''}"
 		aria-label="Learn more about this demand"
 	>
 		<div>

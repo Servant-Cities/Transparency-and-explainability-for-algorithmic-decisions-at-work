@@ -1,6 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { env } from '$env/dynamic/private';
-const { DRUPAL_BASE_URL, DRUPAL_JSON_API_PATH, DRUPAL_MICROSITE_UUID, HOME_PAGE_TYPE_ID } = env;
+import { DRUPAL_BASE_URL, DRUPAL_JSON_API_PATH, DRUPAL_MICROSITE_UUID, HOME_PAGE_TYPE_ID } from '$env/static/private';
 
 const getManifest = async () => {
 	const homepageURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/node/external_content?filter[field_microsite.id]=${DRUPAL_MICROSITE_UUID}&filter[field_microsite_page_type.meta.drupal_internal__target_id]=${HOME_PAGE_TYPE_ID}`;
