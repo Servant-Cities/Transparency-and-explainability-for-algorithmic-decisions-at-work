@@ -25,9 +25,9 @@
 			<img alt="Privacy international's logo" src="/logo.png" />
 		</a>
 		<div>
-			{#each data.socials as { title, url }}
+			{#each data.socials as { title, url, src }}
 				<a href={url} target="_blank" aria-label={title} class="social_link">
-					<img src={`/socials/${title}.svg`} alt={title} />
+					<img {src} alt={title} {title}/>
 				</a>
 			{/each}
 		</div>
@@ -94,6 +94,7 @@
 	img {
 		width: var(--spacing-4);
 		height: 100%;
+		z-index: 1000;
 	}
 
 	@media only screen and (max-width: 940px) {
