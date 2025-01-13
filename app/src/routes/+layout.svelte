@@ -14,7 +14,7 @@
 		{@render children()}
 		{#if aboutPage.id !== nodeId}<section class="about">
 				<h3>{aboutPage.title}</h3>
-				{@html aboutPage.body.processed}
+				{@html aboutPage.summary.processed}
 				<a class="about_link" href={`/${formatTitleURL(aboutPage.title)}/${aboutPage.id}`}
 					>Learn more ↗</a
 				>

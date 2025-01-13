@@ -51,11 +51,14 @@ const getMicrositeNodesMap = async () => {
 			imageAlt = relation.relationships.field_media_image.data.meta.alt
 		}
 
+		console.log({attributes})
+
 		const processedNode = {
 			id,
 			pageType:
 				pageTypes[relationships.field_microsite_page_type.data.meta.drupal_internal__target_id],
 			shortTitle: attributes.field_short_title_menu,
+			summary: attributes.field_summary,
 			body: attributes.body,
 			title: attributes.title,
 			metatag: attributes.metatag,

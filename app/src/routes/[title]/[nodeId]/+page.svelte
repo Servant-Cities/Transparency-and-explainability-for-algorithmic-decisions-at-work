@@ -14,6 +14,7 @@
 	const { subDemands, examples, partners } = $derived(data);
 	const nodeId = $derived($pageStore.params.nodeId);
 	const page = $derived(data.processedNodes[data.indexesMap[nodeId]]);
+	const aboutPage = data.processedNodes[data.aboutPageIndex];
 </script>
 
 <Metatag metatag={page.metatag} title={page.title}/>
@@ -21,6 +22,9 @@
 <NavigationHelper {data} />
 <div>
 	<section class="intro">
+		{#if aboutPage.id === nodeId}
+			{@html aboutPage.summary.processed}
+		{/if}
 		{@html page.body.processed}
 	</section>
 	{#await subDemands}
