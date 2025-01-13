@@ -12,15 +12,13 @@
 		(_, index) => index !== homepageIndex && index !== aboutPageIndex
 	);
 
-	let y: number = $state(0);
 	let opened: boolean = $state(false);
 	const ontouchstart = () => {
 		opened = !opened;
 	};
 </script>
 
-<svelte:window bind:scrollY={y} />
-<nav class:scrolled={y > 60} class:opened {ontouchstart}>
+<nav class:opened {ontouchstart}>
 	<ul>
 		<li><a class:active={!nodeId} href="/">Homepage</a></li>
 		{#each demands as { id, shortTitle }, index}
@@ -50,9 +48,6 @@
 		border: var(--main-color) solid 1px;
 		border-radius: var(--spacing-2);
 		background-color: rgba(255, 255, 255, 0.86);
-	}
-
-	.scrolled {
 		max-width: var(--spacing-4);
 		max-height: var(--spacing-4);
 		padding: unset;
@@ -109,7 +104,7 @@
 	}
 
 	@media only screen and (max-width: 900px) {
-		nav, .scrolled {
+		nav {
 			max-width: var(--spacing-4);
 			max-height: var(--spacing-4);
 			padding: unset;
@@ -133,8 +128,13 @@
 			max-height: none;
 			&::after {
 				content: '⛌';
-                right: var(--spacing-2);
-                left: unset;
+				right: var(--spacing-2);
+				left: unset;
+			}
+			&:hover {
+				&::after {
+					content: '⛌';
+				}
 			}
 		}
 	}
