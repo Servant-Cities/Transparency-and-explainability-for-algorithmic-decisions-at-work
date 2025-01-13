@@ -10,17 +10,18 @@
 </script>
 
 <div class="partner"  in:fade={{ duration: 300, delay: 400 }}>
-	<a href={url} target="_blank"><img src={imageURL} alt={imageAlt} /></a>
 	<div>
 		<h4><a href={url} target="_blank">{title}</a></h4>
-		{@html html}
+		<div>{@html html}</div>
 	</div>
+
+	{#if imageURL}<a href={url} target="_blank"><img src={imageURL} alt={imageAlt} /></a>{/if}
 </div>
 
 <style>
 	.partner {
 		display: flex;
-		flex-direction: row-reverse;
+		flex-direction: row;
 		align-items: center;
 		margin-top: var(--spacing-4);
 		max-width: 900px;
