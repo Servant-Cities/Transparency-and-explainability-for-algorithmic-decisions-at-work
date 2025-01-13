@@ -51,8 +51,6 @@ const getMicrositeNodesMap = async () => {
 			imageAlt = relation.relationships.field_media_image.data.meta.alt
 		}
 
-		console.log({attributes})
-
 		const processedNode = {
 			id,
 			pageType:
