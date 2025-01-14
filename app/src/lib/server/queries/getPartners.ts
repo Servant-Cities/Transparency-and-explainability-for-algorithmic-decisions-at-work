@@ -3,28 +3,31 @@ import { env } from '$env/dynamic/private';
 const { DRUPAL_BASE_URL, DRUPAL_JSON_API_PATH } = env;
 
 const getPartners = async (nodeId: string) => {
-    const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/node/external_content/${nodeId}`;
+	const nodeURL = `${DRUPAL_BASE_URL}${DRUPAL_JSON_API_PATH}/node/external_content/${nodeId}`;
 
-    // Load partners
+	// Load partners
 	const partnersResponse = await fetch(`${nodeURL}/field_external_content_allies`);
 	if (!partnersResponse.ok) {
-		error(partnersResponse.status, {message: `Partners response status: ${partnersResponse.status}`});
+		error(partnersResponse.status, {
+			message: `Partners response status: ${partnersResponse.status}`
+		});
 	}
 
-	const {data: partners} = await partnersResponse.json();
+	const { data: partners } = await partnersResponse.json();
 
-    //Load partners images information
-    return Promise.all(
+	//Load partners images information
+	return Promise.all(
 		partners.map(async (partner) => {
 			const imageRelation = partner.relationships.field_fieldset_image;
 			if (imageRelation?.data?.id) {
 				const imageResponse = await fetch(imageRelation.links.related.href);
 				if (!imageResponse.ok) {
-					error(imageResponse.status, {message: `Partner image response status: ${imageResponse.status}`});
+					error(imageResponse.status, {
+						message: `Partner image response status: ${imageResponse.status}`
+					});
 				}
 
 				const { data: image } = await imageResponse.json();
-
 				return {
 					html: partner.attributes.field_fieldset_text.processed,
 					title: partner.attributes.field_link.title,
@@ -34,11 +37,12 @@ const getPartners = async (nodeId: string) => {
 				};
 			}
 			return {
-				html: partner.attributes?.field_fieldset_text?.processed
+				html: partner.attributes?.field_fieldset_text?.processed,
+				title: partner.attributes.field_link.title,
+				url: partner.attributes.field_link.uri
 			};
 		})
 	);
-
 };
 
 export default getPartners;
