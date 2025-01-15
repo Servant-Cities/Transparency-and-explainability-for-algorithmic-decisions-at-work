@@ -45,10 +45,6 @@
 	src: url('/fonts/Radomir Tinkov - Gilroy-Black.otf') format('opentype');
 }
 
-body {
-	overflow-x: hidden;
-}
-
 main {
 	width: 100%;
 	max-width: 1440px;
