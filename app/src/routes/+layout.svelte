@@ -24,10 +24,10 @@
 		<a href={PUBLIC_CAMPAIGN_ORGANIZER_URL} target="_blank">
 			<img alt="Privacy international's logo" src="/logo.png" />
 		</a>
-		<div>
+		<div class="socials">
 			{#each data.socials as { title, url, src }}
 				<a href={url} target="_blank" aria-label={title} class="social_link">
-					<img {src} alt={title} {title}/>
+					<img {src} alt={title} {title} />
 				</a>
 			{/each}
 		</div>
@@ -87,6 +87,10 @@
 		height: var(--spacing-4);
 	}
 
+	.socials {
+		display: flex;
+		flex-direction: row-reverse;
+	}
 	.social_link {
 		padding: var(--spacing-1);
 	}
@@ -108,6 +112,16 @@
 		.wrapper {
 			padding: var(--spacing-3);
 			padding-bottom: calc(var(--spacing-4) + (2 * var(--spacing-3)));
+		}
+	}
+
+	@media only screen and (max-width: 460px) {
+		.socials {
+			flex-wrap: wrap;
+		}
+
+		.social_link {
+			flex-basis: 30%;
 		}
 	}
 </style>

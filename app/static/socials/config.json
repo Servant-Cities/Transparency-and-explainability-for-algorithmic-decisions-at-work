@@ -1,23 +1,8 @@
 [
     {
-        "title": "Newsletter",
-        "url": "https://action.privacyinternational.org/user/register",
-        "src": "/socials/newsletter.svg"
-    },
-    {
-        "title": "Linkedin",
-        "url": "https://www.linkedin.com/company/privacy-international/",
-        "src": "/socials/linkedin.svg"
-    },
-    {
-        "title": "Mastodon",
-        "url": "https://mastodon.xyz/@privacyint",
-        "src": "/socials/mastodon.svg"
-    },
-    {
-        "title": "X",
-        "url": "https://x.com/privacyint/",
-        "src": "/socials/x.svg"
+        "title": "Thread",
+        "url": "https://www.threads.net/@privacyinternational",
+        "src": "/socials/threads.svg"
     },
     {
         "title": "Bluesky",
@@ -25,8 +10,23 @@
         "src": "/socials/bluesky.svg"
     },
     {
-        "title": "Thread",
-        "url": "https://www.threads.net/@privacyinternational",
-        "src": "/socials/threads.svg"
+        "title": "X",
+        "url": "https://x.com/privacyint/",
+        "src": "/socials/x.svg"
+    },
+    {
+        "title": "Mastodon",
+        "url": "https://mastodon.xyz/@privacyint",
+        "src": "/socials/mastodon.svg"
+    },
+    {
+        "title": "Linkedin",
+        "url": "https://www.linkedin.com/company/privacy-international/",
+        "src": "/socials/linkedin.svg"
+    },
+    {
+        "title": "Newsletter",
+        "url": "https://action.privacyinternational.org/user/register",
+        "src": "/socials/newsletter.svg"
     }
 ]
