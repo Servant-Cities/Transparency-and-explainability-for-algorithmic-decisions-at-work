@@ -23,7 +23,9 @@
 <div>
 	<section class="intro">
 		{#if aboutPage.id === nodeId}
+		<div style="padding-bottom: var(--spacing-4)">
 			{@html aboutPage.summary.processed}
+		</div>
 		{/if}
 		{@html page.body.processed}
 	</section>
