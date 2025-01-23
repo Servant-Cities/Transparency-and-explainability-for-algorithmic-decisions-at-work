@@ -35,13 +35,13 @@ Also make sure the port 3000 is availble and open for http connections.
 
 ### Load the source code
 ```
-git clone https://github.com/Servant-Cities/Transparency-and-explainability-for-algorithmic-decisions-at-work.git
+git clone https://github.com/privacyint/drupal-microsite.git
 ```
 
 ### Create a production bundle
 1. Move to the app folder and create the .env file (eg: with nano)
 ```
-cd Transparency-and-explainability-for-algorithmic-decisions-at-work/app
+cd drupal-microsite/app
 cp .env.example .env
 nano .env
 ```
